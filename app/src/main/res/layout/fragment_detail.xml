@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fabview="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.detail.DetailActivity">
+
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:tint="#4c000000"
+        android:alpha="0"/>
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/detail_container_margin"
+            android:layout_marginRight="@dimen/detail_container_margin"
+            android:clipToPadding="false"
+            android:orientation="vertical">
+
+            <!--android:elevation="10dp"-->
+            <!--android:background="#000"-->
+            
+            <FrameLayout
+                android:id="@+id/status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp"
+                android:background="@color/theme_alt"
+                android:visibility="gone"
+                android:foreground="@drawable/status_gradient"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/detail_product_layout">
+
+                <com.dailyteedeals.dailyapp.ui.widget.SquareFrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/theme_alt">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/image_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"/>
+
+                </com.dailyteedeals.dailyapp.ui.widget.SquareFrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/info_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:paddingLeft="@dimen/detail_info_padding"
+                        android:paddingRight="@dimen/detail_info_padding">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
+
+                            <me.grantland.widget.AutofitTextView
+                                android:id="@+id/design_name_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Design Name"
+                                android:textSize="@dimen/detail_header_text_size"
+                                android:maxLines="2"
+                                android:ellipsize="end"
+                                android:textColor="#000"/>
+
+                            <me.grantland.widget.AutofitTextView
+                                android:id="@+id/artist_name_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Artist"
+                                android:textSize="@dimen/detail_subheader_text_size"
+                                android:singleLine="true"
+                                android:textColor="#000"/>
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/bottom_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#fff"
+                        android:layout_weight="2">
+
+                        <Button
+                            android:id="@+id/buy_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Buy"/>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:background="#fff"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/more_artist"
+                    android:textSize="@dimen/detail_header_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:fontFamily="sans-serif-light" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.halfbit.fabview.FabView
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:background="@color/theme_green"
+        android:src="@drawable/ic_social_share"
+        fabview:fab_attachTo="@+id/info_layout"
+        fabview:fab_attachAt="top_right"
+        fabview:fab_attachType="border"
+        fabview:fab_size="normal"
+        fabview:fab_padding="16dp"
+        fabview:fab_revealAfterMs="300"
+        />
+
+</FrameLayout>

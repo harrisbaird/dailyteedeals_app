@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_green">#ff30b424</color>
+    <color name="theme_alt">#1e1e1e</color>
+
+    <color name="theme_primary">@color/theme_alt</color> <!-- Action bar -->
+    <color name="theme_primary_dark">#ff101010</color> <!-- Status bar -->
+    <color name="theme_accent">@color/theme_green</color>
+    <color name="theme_window_background">#121314</color>
+
+    <color name="theme_divider">#ff000000</color>
+
+    <color name="tab_text_selected">@color/theme_green</color>
+    <color name="tab_text_unselected">#99ffffff</color>
+    <color name="tab_selected_indicator">@color/theme_green</color>
+
+    <color name="detail_top_background">@color/theme_alt</color>
+    <color name="detail_bottom_background">#ff303030</color>
+</resources>

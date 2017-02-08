@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DTD" parent="Theme.DTD.Base">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+
+
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementReenterTransition">@null</item>
+    </style>
+
+    <style name="Theme.DTD.TransparentStatus" parent="Theme.DTD">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!--<item name="android:navigationBarColor">@android:backgroundColor/transparent</item>-->
+    </style>
+
+    <style name="HeaderBar">
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:elevation">@dimen/headerbar_elevation</item>
+    </style>
+</resources>

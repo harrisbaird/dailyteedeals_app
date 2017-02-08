@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currencyList">
+        <item>US Dollar</item>
+        <item>Euro</item>
+        <item>British Pound</item>
+    </string-array>
+
+    <string-array name="currencyValues">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+    </string-array>
+</resources>

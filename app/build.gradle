@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    signingConfigs {
+        release {
+            storeFile file('/Volumes/Stuff/Projects/dailyteedeals_android/app/playStore.keystore')
+            storePassword "===============redacted==============="
+            keyAlias "PlayStoreKey"
+            keyPassword "===============redacted==============="
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.dailyteedeals.dailyapp"
+        minSdkVersion 15
+        targetSdkVersion 21
+        versionCode 8
+        versionName "2.0.1"
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+        }
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir { dirs 'libs' }
+}
+
+def parcelerVersion = '0.2.14'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile "org.parceler:parceler-api:${parcelerVersion}"
+    provided "org.parceler:parceler:${parcelerVersion}"
+    compile 'com.android.support:support-v4:21.0.2'
+    compile 'com.android.support:support-v13:21.0.2'
+    compile 'com.android.support:appcompat-v7:21.0.2'
+    compile 'com.android.support:palette-v7:21.0.2'
+    compile 'com.android.support:recyclerview-v7:21.0.2'
+    compile 'com.google.android.gms:play-services:6.5.+'
+    compile 'com.afollestad:material-dialogs:0.4.6'
+    compile 'com.nispok:snackbar:2.4.0'
+    compile 'com.github.bumptech.glide:glide:3.5.1'
+    compile 'me.grantland:autofittextview:0.2.0'
+    compile 'com.squareup.retrofit:retrofit:1.8.0'
+    compile 'com.jakewharton:butterknife:6.0.0'
+    compile 'com.jakewharton.timber:timber:2.5.0'
+}

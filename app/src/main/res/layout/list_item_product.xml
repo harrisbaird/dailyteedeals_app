@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dailyteedeals.dailyapp.ui.widget.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/background_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:selectable="true"
+    android:foreground="?selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:src="@drawable/noisy_gradient" />-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/grid_spacing"
+        android:layout_marginRight="@dimen/grid_spacing"
+        android:layout_marginBottom="@dimen/grid_spacing">
+
+        <TextView
+            android:id="@+id/design_name_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="5dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="@style/Theme.DTD.Text.GridTitle"/>
+
+        <TextView
+            android:id="@+id/price_text"
+            android:paddingLeft="5dp"
+            android:layout_gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/design_name_text"
+            android:textColor="#aaffffff"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="@style/Theme.DTD.Text.GridSubhead"/>
+
+        <TextView
+            android:id="@+id/price_approximate_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/design_name_text"
+            android:layout_toRightOf="@+id/price_text"
+            android:text="*"
+            android:textColor="#aaffffff"
+            android:textAppearance="@style/Theme.DTD.Text.GridSubhead"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/site_name_text"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/design_name_text"
+            android:layout_toRightOf="@+id/price_approximate_text"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="@style/Theme.DTD.Text.GridSubhead"/>
+    </RelativeLayout>
+
+    <!--<include layout="@layout/include_last_chance_badge" />-->
+
+</com.dailyteedeals.dailyapp.ui.widget.SquareFrameLayout>
