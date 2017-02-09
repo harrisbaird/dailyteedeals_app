@@ -1,4 +1,4 @@
-import secrets from '../secrets.json';
+import secrets from '../secrets.json'
 
 export const ITEM_MARGIN = 1
 export const ITEMS_PER_ROW = 3
