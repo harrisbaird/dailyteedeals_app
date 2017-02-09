@@ -1,11 +1,12 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, ListView, Dimensions} from 'react-native';
+import { StyleSheet, View, ListView, Dimensions, Easing} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import { ITEMS_PER_ROW, ITEM_MARGIN, DEAL_URL } from '../constants'
+import { GRID_ANIMATION_DELAY, ITEMS_PER_ROW, ITEM_MARGIN, DEAL_URL, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 import ItemGrid from '../components/ItemGrid';
+import AnimatedGridItem from '../components/AnimatedGridItem';
 import DealItem from '../components/DealItem';
 import TouchableItem from '../components/TouchableItem';
 
@@ -24,6 +25,10 @@ export default class HomeScreen extends Component {
 
   static navigationOptions = {
     title: 'Daily Tee Deals',
+    header: {
+      style: { backgroundColor : COLOUR_HEADER_BG },
+      tintColor: COLOUR_HEADER_TEXT
+    },
   }
 
   constructor(props: Object) {
@@ -60,10 +65,32 @@ export default class HomeScreen extends Component {
     return (
       <View key={data.id} style={styles.itemContainer}>
         <TouchableItem onPress={this._showDetail.bind(this, data)}>
-          <DealItem key={data.id} data={data} row={row} col={col} itemWidth={itemWidth} />
+          <AnimatedGridItem
+            width={itemWidth}
+            height={itemWidth}
+            row={row}
+            col={col}
+            backgroundColor={data.images.background_color}
+            animDelay={this._staggeredAnimDelay}
+            animEasing={Easing.out(Easing.quad)}>
+            <DealItem data={data} itemWidth={itemWidth} />
+          </AnimatedGridItem>
         </TouchableItem>
       </View>
     )
+  }
+
+  // Animate the grid items so that they appear from top left
+  // to bottom right.
+  // +---+---+---+
+  // | 1 | 2 | 3 |
+  // +---+---+---+
+  // | 2 | 3 | 4 |
+  // +---+---+---+
+  // | 3 | 4 | 5 |
+  // +---+---+---+
+  _staggeredAnimDelay(row: number, col: number) {
+    return (row + col) * GRID_ANIMATION_DELAY;
   }
 
   _showDetail(data) {

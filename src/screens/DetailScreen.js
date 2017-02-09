@@ -9,10 +9,16 @@ import {
   Dimensions,
 } from 'react-native';
 import ProgressiveImage from '../components/ProgressiveImage'
+import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
+
 
 export default class DetailScreen extends Component {
   static navigationOptions = {
-    title: ({ state }) => `${state.params.title}`
+    title: ({ state }) => `${state.params.title}`,
+    header: {
+      style: { backgroundColor : COLOUR_HEADER_BG },
+      tintColor: COLOUR_HEADER_TEXT
+    },
   };
 
   render() {

@@ -3050,8 +3050,8 @@ react-native@0.40.0:
     yargs "^6.4.0"
 
 react-navigation@^1.0.0-beta.1:
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.0.0-beta.2.tgz#dbad8b8a6369aa2f81b8d9c132a4adf622224ce8"
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.0.0-beta.3.tgz#1458380792f63f895241e435b72f76b2dd60ea4e"
   dependencies:
     clamp "^1.0.1"
     fbjs "^0.8.5"
@@ -3722,11 +3722,7 @@ whatwg-encoding@^1.0.1:
   dependencies:
     iconv-lite "0.4.13"
 
-whatwg-fetch@>=0.10.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.2.tgz#fe294d1d89e36c5be8b3195057f2e4bc74fc980e"
-
-whatwg-fetch@^1.0.0:
+whatwg-fetch@>=0.10.0, whatwg-fetch@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-1.1.1.tgz#ac3c9d39f320c6dce5339969d054ef43dd333319"
 
