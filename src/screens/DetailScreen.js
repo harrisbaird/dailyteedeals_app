@@ -4,11 +4,13 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  ScrollView,
   ListView,
   Text,
   Dimensions,
 } from 'react-native';
 import ProgressiveImage from '../components/ProgressiveImage'
+import ShareButton from '../components/ShareButton';
 import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 
 export default class DetailScreen extends React.Component {
@@ -25,14 +27,15 @@ export default class DetailScreen extends React.Component {
     const window = Dimensions.get('window');
 
     return (
-      <View>
+      <ScrollView>
         <ProgressiveImage
           backgroundColor={state.params.product.images.background_color}
           thumbnailURL={state.params.product.images.thumb_300}
           imageURL={state.params.product.images.thumb_1200}
           imageSize={window.width}
         />
-      </View>
+        <ShareButton product={state.params.product}/>
+      </ScrollView>
     );
   }
 
