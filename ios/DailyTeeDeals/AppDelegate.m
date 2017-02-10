@@ -24,8 +24,7 @@
                                                       moduleName:@"DailyTeeDeals"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
-
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+  rootView.backgroundColor = [[UIColor alloc] initWithRed:0.13f green:0.13f blue:0.17f alpha:1.0f];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
