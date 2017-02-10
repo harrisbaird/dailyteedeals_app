@@ -9,7 +9,6 @@ import {
 
 import ProgressiveImage from './ProgressiveImage'
 
-
 type Props = {
   data: Object,
   itemWidth: number;
@@ -32,9 +31,8 @@ export default class DealItem extends React.Component {
           backgroundColor={data.images.background_color}
           thumbnailURL={data.images.loader}
           imageURL={data.images.thumb_300}
-          imageSize={itemWidth}
-        />
-        <Text style={[styles.boxText, {opacity: .5}]}>{data.design.name}</Text>
+          imageSize={itemWidth} />
+        <Text style={styles.boxText} numberOfLines={1}>{data.design.name}</Text>
       </View>
     )
   }
@@ -48,7 +46,9 @@ var styles = StyleSheet.create({
     color: 'white',
     position: 'absolute',
     bottom: 5,
-    right: 5,
-    backgroundColor: 'rgba(0,0,0,0)'
+    right: 10,
+    margin: 10,
+    backgroundColor: 'rgba(0,0,0,0)',
+    opacity: .95,
   }
 });

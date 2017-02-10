@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -11,8 +11,7 @@ import {
 import ProgressiveImage from '../components/ProgressiveImage'
 import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 
-
-export default class DetailScreen extends Component {
+export default class DetailScreen extends React.Component {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
     header: {

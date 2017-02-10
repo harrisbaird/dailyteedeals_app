@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { View, Image, StyleSheet, Animated, Easing } from 'react-native'
 
 type Props = {

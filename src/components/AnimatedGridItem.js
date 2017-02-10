@@ -17,6 +17,7 @@ type Props = {
   animDuration?: number,
   animDelay?: number,
   animEasing?: Function,
+  animRowLimit?: number,
   children?: React.Element<*>;
 }
 
@@ -25,6 +26,7 @@ type DefaultProps = {
   animDuration: number,
   animDelay: Function,
   animEasing: Function,
+  animRowLimit: number,
 }
 
 type State = {
@@ -47,6 +49,7 @@ export default class AnimatedGridItem extends React.Component {
     animDuration: React.PropTypes.number,
     animDelay: React.PropTypes.func,
     animEasing: React.PropTypes.func,
+    animRowLimit: React.PropTypes.number,
   }
 
   static defaultProps = {
@@ -54,6 +57,7 @@ export default class AnimatedGridItem extends React.Component {
     animDuration: 500,
     animDelay: AnimatedGridItem.defaultDelay,
     animEasing: Easing.linear,
+    animRowLimit: 10,
   }
 
   static defaultDelay(row: number, col: number) {
@@ -69,7 +73,13 @@ export default class AnimatedGridItem extends React.Component {
   }
 
   componentDidMount() {
-    let { row, col, animDuration, animDelay, animEasing } = this.props
+    let { row, col, animDuration, animDelay, animEasing, animRowLimit } = this.props
+
+    // Display immediately if above row limit
+    if(row >= animRowLimit) {
+      this.setState({animationValue: 1, animationFinished: true})
+      return
+    }
 
     Animated.timing(
       this.state.animationValue,

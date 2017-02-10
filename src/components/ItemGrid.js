@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { View, ListView, StyleSheet, Dimensions} from 'react-native'
 import _ from 'lodash'
 
