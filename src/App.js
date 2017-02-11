@@ -1,17 +1,16 @@
 /* @flow */
 
-import { StackNavigator } from 'react-navigation'
+import React from 'react'
+import { Provider } from 'react-redux'
+import configureStore from './stores'
+import Nav from './Nav'
 
-import HomeScreen from './screens/HomeScreen'
-import DetailScreen from './screens/DetailScreen'
+const store = configureStore()
 
-import { COLOUR_BG } from './constants'
-
-const App = StackNavigator({
-  Home: { screen: HomeScreen },
-  Detail: { screen: DetailScreen }
-}, {
-  cardStyle: { backgroundColor: COLOUR_BG},
-})
+const App = () => (
+  <Provider store={store}>
+    <Nav />
+  </Provider>
+)
 
 export default App

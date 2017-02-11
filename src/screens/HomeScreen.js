@@ -1,14 +1,16 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import { StyleSheet, View, ListView, Dimensions, Easing} from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import React from 'react';
+import { StyleSheet, View, ListView, Dimensions, Easing} from 'react-native'
+import { StackNavigator } from 'react-navigation'
+import { connect } from 'react-redux'
 
 import { GRID_ANIMATION_DELAY, ITEMS_PER_ROW, ITEM_MARGIN, DEAL_URL, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 import ItemGrid from '../components/ItemGrid';
 import AnimatedGridItem from '../components/AnimatedGridItem';
 import DealItem from '../components/DealItem';
 import TouchableItem from '../components/TouchableItem';
+import * as actions from '../actions'
 
 type Props = {
   navigation: StackNavigator
@@ -19,9 +21,14 @@ type State = {
   itemWidth: number,
 };
 
-export default class HomeScreen extends Component {
+class HomeScreen extends React.Component {
   props: Props;
   state: State;
+
+  static propTypes = {
+    fetchDeals: React.PropTypes.func.isRequired,
+    deals: React.PropTypes.array.isRequired
+  }
 
   static navigationOptions = {
     title: 'Daily Tee Deals',
@@ -46,14 +53,14 @@ export default class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    this._fetchDeals()
+    this.props.fetchDeals()
   }
 
   render() {
     const { navigate } = this.props.navigation
 
     return <ItemGrid
-      data={this.state.products}
+      data={this.props.deals}
       itemsPerRow={ITEMS_PER_ROW}
       renderItem={this._renderItem.bind(this)}
     />
@@ -97,16 +104,24 @@ export default class HomeScreen extends Component {
     const { navigate } = this.props.navigation
     navigate('Detail', { product: data, title: data.design.name })
   }
+}
 
-  _fetchDeals() {
-    fetch(DEAL_URL)
-    .then( response => response.json() )
-    .then( jsonData => {
-      this.setState({products: jsonData.products});
-    })
-    .catch( error => console.log('Error fetching: ' + error) );
+const mapStateToProps = (state) => {
+  return {
+    deals: state.deals.items
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchDeals: () => {
+    dispatch(actions.fetchDeals())
+  }
+})
+
+export default connect(
+	mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen)
 
 const styles = StyleSheet.create({
   itemContainer: {
