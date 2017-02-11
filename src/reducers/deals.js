@@ -6,19 +6,19 @@ const initialState = {
   items: []
 }
 
-export default function dealsState(state = initialState, action) {
+export default function dealsState (state = initialState, action) {
   switch (action.type) {
-  case actions.DEALS_FETCH_SUCCESS:
-    return {
-      ...state,
-      items: action.items
-    }
-  case actions.DEALS_FETCH_FAILED:
-    return {
-      ...state,
-      message: action.message
-    }
-  default:
-    return state
+    case actions.DEALS_FETCH_SUCCESS:
+      return {
+        ...state,
+        items: action.items
+      }
+    case actions.DEALS_FETCH_FAILED:
+      return {
+        ...state,
+        message: action.message
+      }
+    default:
+      return state
   }
 }

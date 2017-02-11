@@ -11,7 +11,7 @@ const Nav = StackNavigator({
   Home: { screen: HomeScreen },
   Detail: { screen: DetailScreen }
 }, {
-  cardStyle: { backgroundColor: COLOUR_BG},
+  cardStyle: { backgroundColor: COLOUR_BG}
 })
 
 export default Nav

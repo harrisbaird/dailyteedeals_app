@@ -11,13 +11,13 @@ export const DEALS_FETCH_FAILED = 'DEALS_FETCH_FAILED'
 export const SETTINGS_SET_ITEMS_PER_ROW = 'SETTINGS_SET_ITEMS_PER_ROW'
 export const SETTINGS_SET_CURRENCY = 'SETTINGS_SET_CURRENCY'
 
-function requestDeals() {
+function requestDeals () {
   return {
     type: DEALS_FETCH_REQUEST
   }
 }
 
-function receiveDeals(json) {
+function receiveDeals (json) {
   return {
     type: DEALS_FETCH_SUCCESS,
     items: json.products
@@ -34,7 +34,7 @@ export const setCurrency = (currency) => ({
   currency: currency
 })
 
-export function fetchDeals() {
+export function fetchDeals () {
   url = `${API_ROOT}/deals?key=${secrets.apiKey}`
 
   return dispatch => {
