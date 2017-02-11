@@ -41,8 +41,7 @@ class HomeScreen extends React.Component<void, Props, State>{
 
     // Calculate item width and margins
     let deviceWidth = Dimensions.get('window').width;
-    let totalMargin = ITEM_MARGIN * (props.itemsPerRow - ITEM_MARGIN);
-    let itemWidth = Math.floor((deviceWidth - totalMargin) / props.itemsPerRow);
+    const itemWidth = (deviceWidth - ITEM_MARGIN / 2 * props.itemsPerRow * 2) / props.itemsPerRow;
     this.state = { itemWidth: itemWidth }
   }
 
