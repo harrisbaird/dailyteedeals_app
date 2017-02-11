@@ -5,7 +5,7 @@ import { StyleSheet, View, ListView, Dimensions, Easing} from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
-import { GRID_ANIMATION_DELAY, ITEMS_PER_ROW, ITEM_MARGIN, DEAL_URL, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
+import { GRID_ANIMATION_DELAY, ITEM_MARGIN, DEAL_URL, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 import ItemGrid from '../components/ItemGrid';
 import AnimatedGridItem from '../components/AnimatedGridItem';
 import DealItem from '../components/DealItem';
@@ -13,7 +13,10 @@ import TouchableItem from '../components/TouchableItem';
 import * as actions from '../actions'
 
 type Props = {
-  navigation: StackNavigator
+  navigation: StackNavigator,
+  fetchDeals: Function,
+  deals: Array<any>,
+  itemsPerRow: number,
 };
 
 type State = {
@@ -27,7 +30,8 @@ class HomeScreen extends React.Component {
 
   static propTypes = {
     fetchDeals: React.PropTypes.func.isRequired,
-    deals: React.PropTypes.array.isRequired
+    deals: React.PropTypes.array.isRequired,
+    itemsPerRow: React.PropTypes.number.isRequired,
   }
 
   static navigationOptions = {
@@ -43,13 +47,9 @@ class HomeScreen extends React.Component {
 
     // Calculate item width and margins
     let deviceWidth = Dimensions.get('window').width;
-    let totalMargin = ITEM_MARGIN * (ITEMS_PER_ROW - ITEM_MARGIN);
-    let itemWidth = Math.floor((deviceWidth - totalMargin) / ITEMS_PER_ROW);
-
-    this.state = {
-      products: [],
-      itemWidth: itemWidth,
-    };
+    let totalMargin = ITEM_MARGIN * (props.itemsPerRow - ITEM_MARGIN);
+    let itemWidth = Math.floor((deviceWidth - totalMargin) / props.itemsPerRow);
+    this.state = { itemWidth: itemWidth }
   }
 
   componentDidMount() {
@@ -61,7 +61,7 @@ class HomeScreen extends React.Component {
 
     return <ItemGrid
       data={this.props.deals}
-      itemsPerRow={ITEMS_PER_ROW}
+      itemsPerRow={this.props.itemsPerRow}
       renderItem={this._renderItem.bind(this)}
     />
   }
@@ -108,7 +108,8 @@ class HomeScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    deals: state.deals.items
+    deals: state.deals.items,
+    itemsPerRow: state.settings.itemsPerRow,
   }
 }
 
