@@ -8,12 +8,17 @@ import {
   ListView,
   Text,
   Dimensions,
-} from 'react-native';
+} from 'react-native'
+import { StackNavigator } from 'react-navigation'
 import ProgressiveImage from '../components/ProgressiveImage'
 import ShareButton from '../components/ShareButton';
 import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 
-export default class DetailScreen extends React.Component {
+type Props = {
+  navigation: StackNavigator,
+}
+
+export default class DetailScreen extends React.Component<void, Props, void> {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
     header: {
@@ -37,9 +42,5 @@ export default class DetailScreen extends React.Component {
         <ShareButton product={state.params.product}/>
       </ScrollView>
     );
-  }
-
-  _goBack = () => {
-    this.props.navigator.pop();
   }
 }

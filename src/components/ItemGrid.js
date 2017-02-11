@@ -20,28 +20,13 @@ type State = {
   dataSource: ListView.DataSource
 };
 
-export default class ItemGrid extends React.Component {
-  props: Props;
-  defaultProps: DefaultProps;
-  state: State;
-
-  static propTypes = {
-    data: React.PropTypes.array.isRequired,
-    itemsPerRow: React.PropTypes.number.isRequired,
-    renderItem: React.PropTypes.func.isRequired,
+export default class ItemGrid extends React.Component<DefaultProps, Props, State> {
+  state: State = {
+    dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
   }
 
   static defaultProps = {
     itemsPerRow: 3,
-  }
-
-  constructor(props: Object) {
-    super(props);
-
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(this._setupData(this.props.data)),
-    };
   }
 
   componentWillReceiveProps(nextProps: Object) {

@@ -3,11 +3,11 @@
 import React from 'react'
 import { View, Text, TouchableHighlight, Share, StyleSheet } from 'react-native'
 
-export default class ShareButton extends React.Component {
-  static propTypes = {
-    product: React.PropTypes.object.isRequired,
-  }
+type Props = {
+  product: Object,
+};
 
+export default class ShareButton extends React.Component<void, Props, void> {
   render() {
     return (
       <TouchableHighlight style={styles.wrapper} onPress={this._doShare.bind(this)}>
@@ -21,8 +21,8 @@ export default class ShareButton extends React.Component {
   _doShare() {
     let { product } = this.props
 
-    designName = product.design.name
-    artistName = product.design.artist.name
+    let designName = product.design.name
+    let artistName = product.design.artist.name
 
     // TODO: Use website product url rather than buy url
 

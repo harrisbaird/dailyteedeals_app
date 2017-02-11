@@ -17,21 +17,15 @@ type Props = {
   fetchDeals: Function,
   deals: Array<any>,
   itemsPerRow: number,
-};
+}
 
 type State = {
-  products: Array<any>,
-  itemWidth: number,
-};
+  itemWidth: number
+}
 
-class HomeScreen extends React.Component {
-  props: Props;
-  state: State;
-
-  static propTypes = {
-    fetchDeals: React.PropTypes.func.isRequired,
-    deals: React.PropTypes.array.isRequired,
-    itemsPerRow: React.PropTypes.number.isRequired,
+class HomeScreen extends React.Component<void, Props, State>{
+  state: State = {
+    itemWidth: 0,
   }
 
   static navigationOptions = {

@@ -14,22 +14,9 @@ type State = {
   imageOpacity: Animated.Value;
 };
 
-export default class ProgressiveImage extends React.Component {
-  props: Props;
-  state: State;
-
-  static propTypes = {
-    backgroundColor: React.PropTypes.string.isRequired,
-    thumbnailURL: React.PropTypes.string.isRequired,
-    imageURL: React.PropTypes.string.isRequired,
-    imageSize: React.PropTypes.number.isRequired,
-  }
-
-  constructor(props: Object) {
-    super(props)
-    this.state = {
-      imageOpacity: new Animated.Value(0),
-    }
+export default class ProgressiveImage extends React.Component<void, Props, State> {
+  state: State = {
+    imageOpacity: new Animated.Value(0),
   }
 
   // Fade in the main image once it has loaded.

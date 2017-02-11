@@ -14,13 +14,7 @@ type Props = {
   itemWidth: number;
 };
 
-export default class DealItem extends React.Component {
-  props: Props;
-
-  static propTypes = {
-    data: React.PropTypes.object.isRequired,
-    itemWidth: React.PropTypes.number.isRequired,
-  }
+export default class DealItem extends React.Component<void, Props, void> {
 
   render() {
     let { data, itemWidth } = this.props

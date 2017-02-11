@@ -34,23 +34,11 @@ type State = {
   animationValue: Animated.Value,
 }
 
-export default class AnimatedGridItem extends React.Component {
-  props: Props;
-  defaultProps: DefaultProps;
-  state: State;
-
-  static propTypes = {
-    width: React.PropTypes.number.isRequired,
-    height: React.PropTypes.number.isRequired,
-    row: React.PropTypes.number.isRequired,
-    col: React.PropTypes.number.isRequired,
-    children: React.PropTypes.node.isRequired,
-    backgroundColor: React.PropTypes.string,
-    animDuration: React.PropTypes.number,
-    animDelay: React.PropTypes.func,
-    animEasing: React.PropTypes.func,
-    animRowLimit: React.PropTypes.number,
-  }
+export default class AnimatedGridItem extends React.Component<DefaultProps, Props, State> {
+  state: State = {
+    animationFinished: false,
+    animationValue: new Animated.Value(0),
+  };
 
   static defaultProps = {
     backgroundColor: '#000',
@@ -62,14 +50,6 @@ export default class AnimatedGridItem extends React.Component {
 
   static defaultDelay(row: number, col: number) {
     return 0
-  }
-
-  constructor(props: Object) {
-    super(props)
-    this.state = {
-      animationFinished: false,
-      animationValue: new Animated.Value(0),
-    }
   }
 
   componentDidMount() {
