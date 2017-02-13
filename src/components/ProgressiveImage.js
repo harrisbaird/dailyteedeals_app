@@ -42,9 +42,12 @@ export default class ProgressiveImage extends React.Component<void, Props, State
             style={[styles.image, {opacity: this.state.imageOpacity}]}
             source={{uri: imageURL}}
             onLoad={() => this.onImageLoaded()}>
-            {this.props.children}
           </Animated.Image>
         </Image>
+
+        <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}>
+          {this.props.children}
+        </View>
       </View>
     )
   }

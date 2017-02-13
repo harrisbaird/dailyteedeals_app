@@ -5,6 +5,7 @@ import {
   View,
   Text,
   StyleSheet,
+  Animated,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProgressiveImage from './ProgressiveImage'
@@ -13,14 +14,33 @@ import Price from './Price'
 type Props = {
   data: Object,
   itemWidth: number;
-};
+}
 
-export default class DealItem extends React.Component<void, Props, void> {
+type State = {
+  animationValue: Animated.Value,
+}
+
+export default class DealItem extends React.Component<void, Props, State> {
+  state: State = {
+    animationValue: new Animated.Value(0),
+  }
+
+  componentDidMount() {
+    Animated.timing(
+      this.state.animationValue,
+      {
+        toValue: 1,
+        useNativeDriver: true,
+      }
+    ).start()
+  }
+
   render() {
     let { data, itemWidth } = this.props
+    let { animationValue } = this.state
 
     return (
-      <View>
+      <Animated.View style={{ opacity: animationValue, transform: [{scale: animationValue}]}}>
         <ProgressiveImage
           backgroundColor={data.images.background_color}
           thumbnailURL={data.images.loader}
@@ -40,7 +60,7 @@ export default class DealItem extends React.Component<void, Props, void> {
             <Text style={[styles.overlay, styles.designNameText]} numberOfLines={1}>{data.design.name}</Text>
           </View>
         </ProgressiveImage>
-      </View>
+      </Animated.View>
     )
   }
 }

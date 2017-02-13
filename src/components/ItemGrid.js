@@ -59,6 +59,7 @@ export default class ItemGrid extends React.Component<DefaultProps, Props, State
           style={styles.list}
           dataSource={this.state.dataSource}
           renderRow={this._renderRow.bind(this)}
+          initialListSize={10}
           enableEmptySections
         />
       </View>

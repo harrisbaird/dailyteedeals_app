@@ -1,15 +1,13 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, View, ListView, Dimensions, Easing } from 'react-native'
+import { StyleSheet, View, ListView, Dimensions, Easing, TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { GRID_ANIMATION_DELAY, ITEM_MARGIN, DEAL_URL } from '../constants'
 import ItemGrid from '../components/ItemGrid';
-import AnimatedGridItem from '../components/AnimatedGridItem';
 import DealItem from '../components/DealItem';
-import TouchableItem from '../components/TouchableItem';
 import LoadingSpinner from '../components/LoadingSpinner';
 import * as actions from '../actions'
 
@@ -65,33 +63,11 @@ class HomeScreen extends React.Component<void, Props, State>{
 
     return (
       <View key={data.id} style={styles.itemContainer}>
-        <TouchableItem onPress={this._showDetail.bind(this, data)}>
-          <AnimatedGridItem
-            width={itemWidth}
-            height={itemWidth}
-            row={row}
-            col={col}
-            backgroundColor={data.images.background_color}
-            animDelay={this._staggeredAnimDelay}
-            animEasing={Easing.out(Easing.quad)}>
-            <DealItem data={data} itemWidth={itemWidth} />
-          </AnimatedGridItem>
-        </TouchableItem>
+        <TouchableOpacity onPress={this._showDetail.bind(this, data)}>
+          <DealItem data={data} itemWidth={itemWidth} />
+        </TouchableOpacity>
       </View>
     )
-  }
-
-  // Animate the grid items so that they appear from top left
-  // to bottom right.
-  // +---+---+---+
-  // | 1 | 2 | 3 |
-  // +---+---+---+
-  // | 2 | 3 | 4 |
-  // +---+---+---+
-  // | 3 | 4 | 5 |
-  // +---+---+---+
-  _staggeredAnimDelay(row: number, col: number) {
-    return (row + col) * GRID_ANIMATION_DELAY;
   }
 
   _showDetail(data) {
