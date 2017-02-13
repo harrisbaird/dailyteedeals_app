@@ -1,13 +1,9 @@
 /* @flow */
 
 import * as actions from '../actions'
+import Locale from 'react-native-locale'
 
-const initialState = {
-  itemsPerRow: 3,
-  currency: 'USD'
-}
-
-export default function settingsState (state = initialState, action) {
+export default function settingsState (state = getInitialState(), action) {
   switch (action.type) {
     case actions.SETTINGS_SET_CURRENCY:
       return {
@@ -21,5 +17,15 @@ export default function settingsState (state = initialState, action) {
       }
     default:
       return state
+  }
+}
+
+function getInitialState() {
+  const validCurrencies = ['USD', 'GBP', 'EUR']
+  const deviceCurrency = Locale.constants().currencyCode
+
+  return {
+    itemsPerRow: 2,
+    currency: validCurrencies.includes(deviceCurrency) ? deviceCurrency : 'USD',
   }
 }

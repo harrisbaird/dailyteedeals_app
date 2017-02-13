@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProgressiveImage from './ProgressiveImage'
+import Price from './Price'
 
 type Props = {
   data: Object,
@@ -15,11 +16,6 @@ type Props = {
 };
 
 export default class DealItem extends React.Component<void, Props, void> {
-  // TODO: Coupon
-  // TODO: Last chance
-  // TODO: Prices
-  // TODO: Site
-
   render() {
     let { data, itemWidth } = this.props
 
@@ -38,7 +34,7 @@ export default class DealItem extends React.Component<void, Props, void> {
 
           <View style={[styles.bottomText]}>
             <View style={{ flexDirection: 'row' }}>
-              <Text style={[{ marginRight: 5, fontWeight: 'bold' }, styles.overlay, styles.subText]}>£12</Text>
+              <Price prices={data.prices} style={[{ marginRight: 5, fontWeight: 'bold' }, styles.overlay, styles.subText]} />
               <Text style={[styles.overlay, styles.subText]}>{data.site.name}</Text>
             </View>
             <Text style={[styles.overlay, styles.designNameText]} numberOfLines={1}>{data.design.name}</Text>

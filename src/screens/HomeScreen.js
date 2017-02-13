@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, View, ListView, Dimensions, Easing} from 'react-native'
+import { StyleSheet, View, ListView, Dimensions, Easing } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
