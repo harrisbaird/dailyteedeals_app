@@ -10,6 +10,7 @@ import ItemGrid from '../components/ItemGrid';
 import AnimatedGridItem from '../components/AnimatedGridItem';
 import DealItem from '../components/DealItem';
 import TouchableItem from '../components/TouchableItem';
+import LoadingSpinner from '../components/LoadingSpinner';
 import * as actions from '../actions'
 
 type Props = {
@@ -48,11 +49,15 @@ class HomeScreen extends React.Component<void, Props, State>{
   render() {
     const { navigate } = this.props.navigation
 
-    return <ItemGrid
-      data={this.props.deals}
-      itemsPerRow={this.props.itemsPerRow}
-      renderItem={this._renderItem.bind(this)}
-    />
+    return (
+      <View style={{flex: 1}}>
+        <ItemGrid
+          data={this.props.deals}
+          itemsPerRow={this.props.itemsPerRow}
+          renderItem={this._renderItem.bind(this)} />
+        <LoadingSpinner />
+      </View>
+    )
   }
 
   _renderItem(data: Object, row: number, col: number) {
