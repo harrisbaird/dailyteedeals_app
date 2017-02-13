@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import ProgressiveImage from '../components/ProgressiveImage'
-import ShareButton from '../components/ShareButton';
+import ShareButton from '../components/ShareButton'
 import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 
 type Props = {
@@ -21,15 +21,11 @@ type Props = {
 export default class DetailScreen extends React.Component<void, Props, void> {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
-    header: {
-      style: { backgroundColor : COLOUR_HEADER_BG },
-      tintColor: COLOUR_HEADER_TEXT
-    },
-  };
+  }
 
   render() {
     const {state} = this.props.navigation;
-    const window = Dimensions.get('window');
+    const window = Dimensions.get('window')
 
     return (
       <ScrollView>

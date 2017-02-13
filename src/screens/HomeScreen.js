@@ -5,7 +5,7 @@ import { StyleSheet, View, ListView, Dimensions, Easing } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
-import { GRID_ANIMATION_DELAY, ITEM_MARGIN, DEAL_URL, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
+import { GRID_ANIMATION_DELAY, ITEM_MARGIN, DEAL_URL } from '../constants'
 import ItemGrid from '../components/ItemGrid';
 import AnimatedGridItem from '../components/AnimatedGridItem';
 import DealItem from '../components/DealItem';
@@ -29,11 +29,7 @@ class HomeScreen extends React.Component<void, Props, State>{
   }
 
   static navigationOptions = {
-    title: 'Daily Tee Deals',
-    header: {
-      style: { backgroundColor : COLOUR_HEADER_BG },
-      tintColor: COLOUR_HEADER_TEXT
-    },
+    title: 'Daily Tee Deals'
   }
 
   constructor(props: Object) {
