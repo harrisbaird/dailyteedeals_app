@@ -9,9 +9,9 @@ import { COLOUR_BG } from './constants'
 
 const Nav = StackNavigator({
   Home: { screen: HomeScreen },
-  Detail: { screen: DetailScreen }
+  Detail: { screen: DetailScreen },
 }, {
-  cardStyle: { backgroundColor: COLOUR_BG}
-})
+  cardStyle: { backgroundColor: COLOUR_BG},
+});
 
 export default Nav

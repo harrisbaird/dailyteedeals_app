@@ -8,6 +8,7 @@ type Props = {
   thumbnailURL: string,
   imageURL: string,
   imageSize: number,
+  children?: React.Element<*>;
 };
 
 type State = {
@@ -25,6 +26,7 @@ export default class ProgressiveImage extends React.Component<void, Props, State
       toValue: 1,
       duration: 250,
       easing: Easing.out(Easing.quad),
+      useNativeDriver: true,
     }).start()
   }
 
@@ -35,13 +37,14 @@ export default class ProgressiveImage extends React.Component<void, Props, State
       <View style={{width: imageSize, height: imageSize, backgroundColor: backgroundColor}}>
         <Image
           style={styles.image}
-          source={{uri: thumbnailURL}}
-        />
-        <Animated.Image
-          style={[styles.image, {opacity: this.state.imageOpacity}]}
-          source={{uri: imageURL}}
-          onLoad={() => this.onImageLoaded()}
-        />
+          source={{uri: thumbnailURL}}>
+          <Animated.Image
+            style={[styles.image, {opacity: this.state.imageOpacity}]}
+            source={{uri: imageURL}}
+            onLoad={() => this.onImageLoaded()}>
+            {this.props.children}
+          </Animated.Image>
+        </Image>
       </View>
     )
   }
@@ -49,10 +52,6 @@ export default class ProgressiveImage extends React.Component<void, Props, State
 
 const styles = StyleSheet.create({
   image: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
+    flex: 1,
   },
 })
