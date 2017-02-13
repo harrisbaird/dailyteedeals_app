@@ -2,9 +2,12 @@
 
 import React from 'react'
 import { View, ListView, StyleSheet, Dimensions} from 'react-native'
-import _ from 'lodash'
 
 const { width } = Dimensions.get('window');
+
+function chunk(arr, n) {
+    return Array.from(Array(Math.ceil(arr.length/n)), (_,i)=>arr.slice(i*n,i*n+n));
+}
 
 type Props = {
   data: Array<any>,
@@ -36,12 +39,12 @@ export default class ItemGrid extends React.Component<DefaultProps, Props, State
   }
 
   _setupData(data: Array<any>) {
-    const rows = _.chunk(data, this.props.itemsPerRow);
+    const rows = chunk(data, this.props.itemsPerRow);
 
     // Ensure the last row contains the correct number of items by adding
     // a placeholder.
     if (rows.length) {
-      const lastRow = _.last(rows)
+      const lastRow = rows.slice(-1)[0]
       let wantItems = this.props.itemsPerRow - lastRow.length
       lastRow.push(...Array(wantItems).fill(null))
     }
