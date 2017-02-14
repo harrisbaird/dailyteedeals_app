@@ -4,8 +4,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import SettingsList from 'react-native-settings-list'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import * as actions from '../actions'
-import { CURRENCIES } from '../constants'
+import { CURRENCIES, COLOUR_MISC } from '../constants'
 
 type Props = {
   navigation: StackNavigator,
@@ -23,20 +24,35 @@ class SettingsDetailScreen extends React.Component<void, Props, void> {
 
     return (
       <View style={{flex:1}}>
-        <SettingsList>
+        <SettingsList borderColor='#c8c7cc'>
           {values.map((c, index) =>
             <SettingsList.Item
               title={generateTitleFn(c)}
               key={index}
-              hasNavArrow={false}
-              onPress={() => updateFn(c)}
-              titleStyle={ currentValue == c ?  { color: '#f00'} : { color: '#000' } } />
+              hasNavArrow={c == currentValue}
+              arrowIcon={<View style={styles.iconContainer}><Icon name='check' style={styles.icon} /></View>}
+              onPress={() => updateFn(c)} />
           )}
         </SettingsList>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  iconContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 15,
+  },
+  icon: {
+    fontSize: 20,
+    color: COLOUR_MISC,
+    alignItems:'center',
+    justifyContent:'center'
+  }
+})
 
 const mapStateToProps = (state) => ({
   currency: state.settings.currency,

@@ -1,11 +1,12 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import SettingsList from 'react-native-settings-list'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import * as actions from '../actions'
-import { CURRENCIES } from '../constants'
+import { CURRENCIES, COLOUR_MISC } from '../constants'
 
 type Props = {
   navigation: StackNavigator,
@@ -21,10 +22,12 @@ class SettingsListScreen extends React.Component {
 
     return (
       <View style={{flex:1}}>
-        <SettingsList>
+        <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
           <SettingsList.Item
             title='Currency'
             titleInfo={CURRENCIES[currency].name}
+            icon={this.makeIcon(CURRENCIES[currency].icon)}
+            hasNavArrow={Platform.OS === 'ios'}
             onPress={() => navigation.navigate('SettingsDetail', {
               title: 'Currency',
               type: 'currency',
@@ -32,10 +35,11 @@ class SettingsListScreen extends React.Component {
               updateFn: setCurrency,
               generateTitleFn: ((c) => CURRENCIES[c].name),
             })} />
-
           <SettingsList.Item
             title='Items Per Row'
             titleInfo={itemsPerRow.toString()}
+            icon={this.makeIcon('th')}
+            hasNavArrow={Platform.OS === 'ios'}
             onPress={() => navigation.navigate('SettingsDetail', {
               title: 'Items Per Row',
               type: 'itemsPerRow',
@@ -47,7 +51,46 @@ class SettingsListScreen extends React.Component {
       </View>
     )
   }
+
+  makeIcon(icon) {
+    return (
+      <View style={styles.iconContainer}>
+        <Icon name={icon} style={styles.icon} />
+      </View>
+    )
+  }
 }
+
+const styles = StyleSheet.create({
+  iconContainer: {
+    marginLeft:15,
+    height: 30,
+    width: 30,
+    alignSelf:'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+    ...Platform.select({
+      ios: {
+        backgroundColor: COLOUR_MISC,
+      },
+      android: {
+        backgroundColor: 'transparent',
+      },
+    })
+  },
+  icon: {
+    fontSize: 20,
+    ...Platform.select({
+      ios: {
+        color: '#fff',
+      },
+      android: {
+        color: COLOUR_MISC,
+      },
+    })
+  }
+})
 
 const mapStateToProps = (state) => ({
   currency: state.settings.currency,
