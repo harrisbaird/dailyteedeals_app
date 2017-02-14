@@ -6,7 +6,7 @@ import settings from './settings'
 
 const rootReducer = combineReducers({
   deals,
-  settings
+  settings,
 })
 
 export default rootReducer

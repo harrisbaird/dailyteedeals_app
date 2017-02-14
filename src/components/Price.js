@@ -3,14 +3,13 @@
 import React from 'react';
 import { Text } from 'react-native'
 import { connect } from 'react-redux'
+import { CURRENCIES } from '../constants'
 
 type Props = {
   prices: {[key: string]: any},
   currency: string,
   style?: Object,
 }
-
-const SYMBOLS = { 'USD': '$', 'GBP': '£', 'EUR': '€' }
 
 class Price extends React.Component<void, Props, void>{
   render() {
@@ -22,16 +21,14 @@ class Price extends React.Component<void, Props, void>{
     let amount = Math.ceil(price.amount/100)
 
     return (
-      <Text style={style}>{SYMBOLS[currency]}{amount}</Text>
+      <Text style={style}>{CURRENCIES[currency].symbol}{amount}</Text>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currency: state.settings.currency,
-  }
-}
+const mapStateToProps = (state) => ({
+  currency: state.settings.currency,
+})
 
 export default connect(
 	mapStateToProps,

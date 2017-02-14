@@ -2,6 +2,7 @@
 
 import * as actions from '../actions'
 import Locale from 'react-native-locale'
+import { CURRENCIES } from '../constants'
 
 export default function settingsState (state = getInitialState(), action) {
   switch (action.type) {
@@ -21,7 +22,7 @@ export default function settingsState (state = getInitialState(), action) {
 }
 
 function getInitialState() {
-  const validCurrencies = ['USD', 'GBP', 'EUR']
+  const validCurrencies = Object.keys(CURRENCIES)
   const deviceCurrency = Locale.constants().currencyCode
 
   return {

@@ -18,11 +18,7 @@ type Props = {
   navigation: StackNavigator,
 }
 
-export default class DetailScreen extends React.Component<void, Props, void> {
-  static navigationOptions = {
-    title: ({ state }) => `${state.params.title}`,
-  }
-
+export default class DetailScreen extends React.Component <void, Props, void> {
   render() {
     const {state} = this.props.navigation;
     const window = Dimensions.get('window')

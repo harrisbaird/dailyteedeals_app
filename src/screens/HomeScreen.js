@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, View, ListView, Dimensions, Easing, TouchableOpacity, RefreshControl } from 'react-native'
+import { StyleSheet, View, ListView, Button, Dimensions, Easing, TouchableOpacity, RefreshControl } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -35,23 +35,19 @@ class HomeScreen extends React.Component<void, Props, State> {
     dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
   }
 
-  static navigationOptions = {
-    title: 'Daily Tee Deals'
-  }
-
   componentDidMount() {
     let { itemsPerRow, fetchDeals} = this.props
-
-    // Calculate item width and margins
-    const itemWidth = (deviceWidth - ITEM_MARGIN / 2 * itemsPerRow * 2) / itemsPerRow;
-    this.setState({ itemWidth: itemWidth })
-
     fetchDeals()
   }
 
   componentWillReceiveProps(nextProps) {
+    // Calculate item width and margins
+    let itemWidth = (deviceWidth - ITEM_MARGIN / 2 * nextProps.itemsPerRow * 2) / nextProps.itemsPerRow;
+    let data = this._setupData(nextProps.deals, nextProps.itemsPerRow)
+
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this._setupData(nextProps.deals))
+      itemWidth: itemWidth,
+      dataSource: this.state.dataSource.cloneWithRows(data)
     })
   }
 
@@ -85,7 +81,7 @@ class HomeScreen extends React.Component<void, Props, State> {
             return this._renderItem(data, parseInt(rowID), col);
           } else {
             // Fill the last row
-            return <View key={col} style={{width: deviceWidth / this.props.itemsPerRow}}/>
+            return <View key={col} style={{width: this.props.itemWidth}}/>
           }
         })}
       </View>
@@ -96,7 +92,7 @@ class HomeScreen extends React.Component<void, Props, State> {
     const { itemWidth } = this.state
 
     return (
-      <View key={data.id} style={styles.itemContainer}>
+      <View key={data.id} style={{width: itemWidth}}>
         <TouchableOpacity onPress={this._showDetail.bind(this, data)}>
           <DealItem data={data} itemWidth={itemWidth} />
         </TouchableOpacity>
@@ -109,14 +105,14 @@ class HomeScreen extends React.Component<void, Props, State> {
     navigate('Detail', { product: data, title: data.design.name })
   }
 
-  _setupData(data: Array<any>) {
-    const rows = chunk(data, this.props.itemsPerRow);
+  _setupData(data: Array<any>, itemsPerRow: number) {
+    const rows = chunk(data, itemsPerRow);
 
     // Ensure the last row contains the correct number of items by adding
     // a placeholder.
     if (rows.length) {
       const lastRow = rows.slice(-1)[0]
-      let wantItems = this.props.itemsPerRow - lastRow.length
+      let wantItems = itemsPerRow - lastRow.length
       lastRow.push(...Array(wantItems).fill(null))
     }
 
@@ -124,13 +120,11 @@ class HomeScreen extends React.Component<void, Props, State> {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    deals: state.deals.items,
-    refreshing: state.deals.refreshing,
-    itemsPerRow: state.settings.itemsPerRow,
-  }
-}
+const mapStateToProps = (state) => ({
+  deals: state.deals.items,
+  refreshing: state.deals.refreshing,
+  itemsPerRow: state.settings.itemsPerRow,
+})
 
 const mapDispatchToProps = (dispatch) => ({
   fetchDeals: () => {
@@ -151,11 +145,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   row: {
+    flex: 1,
     justifyContent: 'space-around',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    flex: 1,
     marginBottom: ITEM_MARGIN,
   },
 });
