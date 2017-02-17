@@ -18,6 +18,7 @@ class Price extends React.Component<void, Props, void>{
 
     // Product prices are in cents,
     // Convert to float and round up amount to nearest whole unit
+    // Not ideal but will do
     let amount = Math.ceil(price.amount/100)
 
     return (

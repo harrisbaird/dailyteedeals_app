@@ -20,16 +20,16 @@ type Props = {
 
 export default class DetailScreen extends React.Component <void, Props, void> {
   render() {
-    const {state} = this.props.navigation;
-    const window = Dimensions.get('window')
+    const {state} = this.props.navigation
+    const imageSize = Dimensions.get('window').width
 
     return (
       <ScrollView>
         <ProgressiveImage
+          style={{ width: imageSize, height: imageSize }}
           backgroundColor={state.params.product.images.background_color}
           thumbnailURL={state.params.product.images.thumb_300}
           imageURL={state.params.product.images.thumb_1200}
-          imageSize={window.width}
         />
         <ShareButton product={state.params.product}/>
       </ScrollView>

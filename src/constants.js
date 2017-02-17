@@ -1,4 +1,4 @@
-export const ITEM_MARGIN = 2
+export const ITEM_MARGIN = 1
 
 export const COLOUR_HEADER_BG = '#15151d'
 export const COLOUR_HEADER_TEXT = '#FFF'

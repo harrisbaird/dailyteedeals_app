@@ -7,7 +7,6 @@ type Props = {
   backgroundColor: string,
   thumbnailURL: string,
   imageURL: string,
-  imageSize: number,
   children?: React.Element<*>;
 };
 
@@ -31,10 +30,10 @@ export default class ProgressiveImage extends React.Component<void, Props, State
   }
 
   render() {
-    let { backgroundColor, thumbnailURL, imageURL, imageSize } = this.props
+    let { backgroundColor, thumbnailURL, imageURL } = this.props
 
     return (
-      <View style={{width: imageSize, height: imageSize, backgroundColor: backgroundColor}}>
+      <View style={[this.props.style, { backgroundColor: backgroundColor }]}>
         <Image
           style={styles.image}
           source={{uri: thumbnailURL}}>

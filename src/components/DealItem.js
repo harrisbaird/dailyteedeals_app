@@ -13,7 +13,7 @@ import Price from './Price'
 
 type Props = {
   data: Object,
-  itemWidth: number;
+  itemHeight: number,
 }
 
 type State = {
@@ -36,16 +36,16 @@ export default class DealItem extends React.Component<void, Props, State> {
   }
 
   render() {
-    let { data, itemWidth } = this.props
+    let { data, itemHeight } = this.props
     let { animationValue } = this.state
 
     return (
       <Animated.View style={{ opacity: animationValue, transform: [{scale: animationValue}]}}>
         <ProgressiveImage
+          style={{flex:1, height: itemHeight}}
           backgroundColor={data.images.background_color}
           thumbnailURL={data.images.loader}
-          imageURL={data.images.thumb_300}
-          imageSize={itemWidth}>
+          imageURL={data.images.thumb_300}>
           <View style={styles.icons}>
             { data.last_chance &&
               <Icon name="clock-o" style={[styles.overlay, styles.icon]} />
@@ -99,5 +99,4 @@ var styles = StyleSheet.create({
   subText: {
     fontSize: 12,
   }
-
 });
