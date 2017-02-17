@@ -10,6 +10,7 @@ export const DEALS_FETCH_FAILED = 'DEALS_FETCH_FAILED'
 
 export const SETTINGS_SET_ITEMS_PER_ROW = 'SETTINGS_SET_ITEMS_PER_ROW'
 export const SETTINGS_SET_CURRENCY = 'SETTINGS_SET_CURRENCY'
+export const SETTINGS_SET_GRID_IMAGES_ONLY = 'SETTINGS_SET_GRID_IMAGES_ONLY'
 
 function requestDeals () {
   return {
@@ -29,9 +30,14 @@ export const setItemsPerRow = (value) => ({
   itemsPerRow: value
 })
 
-export const setCurrency = (currency) => ({
+export const setCurrency = (value) => ({
   type: SETTINGS_SET_CURRENCY,
-  currency: currency
+  currency: value
+})
+
+export const setGridImagesOnly = (value) => ({
+  type: SETTINGS_SET_GRID_IMAGES_ONLY,
+  gridImagesOnly: value
 })
 
 export function fetchDeals () {

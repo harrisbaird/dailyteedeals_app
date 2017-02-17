@@ -16,6 +16,11 @@ export default function settingsState (state = getInitialState(), action) {
         ...state,
         itemsPerRow: action.itemsPerRow
       }
+    case actions.SETTINGS_SET_GRID_IMAGES_ONLY:
+      return {
+        ...state,
+        gridImagesOnly: action.gridImagesOnly
+      }
     default:
       return state
   }
@@ -27,6 +32,8 @@ function getInitialState() {
 
   return {
     itemsPerRow: 2,
+    hiddenSites: [],
     currency: validCurrencies.includes(deviceCurrency) ? deviceCurrency : 'USD',
+    gridImagesOnly: false,
   }
 }

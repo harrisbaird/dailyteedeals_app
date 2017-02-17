@@ -1,18 +1,15 @@
 /* @flow */
 
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Animated,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React from 'react'
+import { View, Text, StyleSheet, Animated } from 'react-native'
+import { connect } from 'react-redux'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import ProgressiveImage from './ProgressiveImage'
 import Price from './Price'
 
 type Props = {
   data: Object,
+  gridImagesOnly: boolean,
   itemHeight: number,
 }
 
@@ -20,7 +17,7 @@ type State = {
   animationValue: Animated.Value,
 }
 
-export default class DealItem extends React.Component<void, Props, State> {
+class DealItem extends React.Component<void, Props, State> {
   state: State = {
     animationValue: new Animated.Value(0),
   }
@@ -36,34 +33,43 @@ export default class DealItem extends React.Component<void, Props, State> {
   }
 
   render() {
-    let { data, itemHeight } = this.props
+    let { data, gridImagesOnly, itemHeight } = this.props
     let { animationValue } = this.state
 
     return (
-      <Animated.View style={{ opacity: animationValue, transform: [{scale: animationValue}]}}>
+      <Animated.View style={{ flex: 1, opacity: animationValue, transform: [{scale: animationValue}]}}>
         <ProgressiveImage
           style={{flex:1, height: itemHeight}}
           backgroundColor={data.images.background_color}
           thumbnailURL={data.images.loader}
           imageURL={data.images.thumb_300}>
-          <View style={styles.icons}>
-            { data.last_chance &&
-              <Icon name="clock-o" style={[styles.overlay, styles.icon]} />
-            }
-          </View>
-
-          <View style={[styles.bottomText]}>
-            <View style={{ flexDirection: 'row' }}>
-              <Price prices={data.prices} style={[{ marginRight: 5, fontWeight: 'bold' }, styles.overlay, styles.subText]} />
-              <Text style={[styles.overlay, styles.subText]}>{data.site.name}</Text>
-            </View>
-            <Text style={[styles.overlay, styles.designNameText]} numberOfLines={1}>{data.design.name}</Text>
-          </View>
+          { !gridImagesOnly && this._renderExtras(data)  }
         </ProgressiveImage>
       </Animated.View>
     )
   }
+
+  _renderExtras(data: Object) {
+    return (
+      <View style={{flex: 1}}>
+        <View style={styles.icons}>
+          { data.last_chance && <Icon name="clock-o" style={[styles.overlay, styles.icon]} /> }
+        </View>
+
+        <View style={[styles.bottomText]}>
+          <View style={{ flexDirection: 'row' }}>
+            <Price prices={data.prices} style={[{ marginRight: 5, fontWeight: 'bold' }, styles.overlay, styles.subText]} />
+            <Text style={[styles.overlay, styles.subText]}>{data.site.name}</Text>
+          </View>
+          <Text style={[styles.overlay, styles.designNameText]} numberOfLines={1}>{data.design.name}</Text>
+        </View>
+      </View>
+    )
+  }
 }
+
+const mapStateToProps = (state) => ({gridImagesOnly: state.settings.gridImagesOnly})
+export default connect(mapStateToProps)(DealItem)
 
 var styles = StyleSheet.create({
   icons: {
