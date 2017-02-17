@@ -28,10 +28,7 @@ class HomeScreen extends React.Component<void, Props, State> {
   }
 
   componentDidMount() {
-    let { itemsPerRow, fetchDeals } = this.props
-    fetchDeals()
-
-    this.setState({ itemHeight: Dimensions.get('window').width / itemsPerRow })
+    this.props.fetchDeals()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,6 +37,8 @@ class HomeScreen extends React.Component<void, Props, State> {
     if(this.props.itemsPerRow != nextProps.itemsPerRow) {
       nextProps.fetchDeals()
     }
+
+    this.setState({ itemHeight: Dimensions.get('window').width / nextProps.itemsPerRow })
   }
 
   render() {
