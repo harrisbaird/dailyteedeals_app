@@ -1,9 +1,6 @@
 language: android
 before_install:
-- openssl aes-256-cbc -K $encrypted_e7ac0b1660ba_key -iv $encrypted_e7ac0b1660ba_iv
-  -in secrets.json.enc -out secrets.json -d
-- nvm install 6
-- node --version
+- nvm install node
 install:
 - npm install
 android:
@@ -17,3 +14,6 @@ android:
 script:
 - npm test
 - cd android && ./gradlew assembleRelease
+cache:
+  directories:
+    - node_modules
