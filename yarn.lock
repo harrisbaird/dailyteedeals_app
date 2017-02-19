@@ -2965,9 +2965,9 @@ react-native-drawer-layout@^1.1.0:
     autobind-decorator "^1.3.2"
     react-native-dismiss-keyboard "1.0.0"
 
-react-native-grid-component@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-grid-component/-/react-native-grid-component-1.0.4.tgz#1a14b21103b96adc110b5ec0e754615cfafdd855"
+react-native-grid-component@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-grid-component/-/react-native-grid-component-1.0.1.tgz#11b2ad6914a2bd83634cb2ad2cf4d83e747c1647"
 
 react-native-locale@^0.0.14:
   version "0.0.14"

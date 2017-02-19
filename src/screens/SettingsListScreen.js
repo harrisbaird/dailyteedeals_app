@@ -25,34 +25,45 @@ class SettingsListScreen extends React.Component {
     let { currency, itemsPerRow, gridImagesOnly, hiddenSites, setCurrency, setItemsPerRow, setGridImagesOnly } = this.props
 
     return (
-      <View style={{flex:1}}>
-        <SettingsList borderColor='#c8c7cc' defaultItemSize={50}>
-          <SettingsList.Item
-            title='Currency'
-            titleInfo={CURRENCIES[currency].name}
-            icon={this._makeIcon(CURRENCIES[currency].icon)}
-            hasNavArrow={Platform.OS === 'ios'}
-            onPress={() => navigate('SettingsDetail', {
-              title: 'Currency',
-              type: 'currency',
-              values: Object.keys(CURRENCIES),
-              updateFn: setCurrency,
-              generateTitleFn: ((c) => CURRENCIES[c].name),
-            })} />
-          <SettingsList.Item
-            title='Items Per Row'
-            titleInfo={itemsPerRow.toString()}
-            icon={this._makeIcon('th')}
-            hasNavArrow={Platform.OS === 'ios'}
-            onPress={() => navigate('SettingsDetail', {
-              title: 'Items Per Row',
-              type: 'itemsPerRow',
-              values: [2, 3, 4, 5, 6],
-              updateFn: setItemsPerRow,
-              generateTitleFn: ((c) => c.toString()),
-            })} />
-        </SettingsList>
-      </View>
+      <SettingsList borderColor='#c8c7cc' defaultItemSize={50} style={{flex:1}}>
+        <SettingsList.Item
+          title='Currency'
+          titleInfo={CURRENCIES[currency].name}
+          icon={this._makeIcon(CURRENCIES[currency].icon)}
+          hasNavArrow={Platform.OS === 'ios'}
+          onPress={() => navigate('SettingsDetail', {
+            title: 'Currency',
+            type: 'currency',
+            values: Object.keys(CURRENCIES),
+            updateFn: setCurrency,
+            generateTitleFn: ((c) => CURRENCIES[c].name),
+          })} />
+        <SettingsList.Item
+          title='Items Per Row'
+          titleInfo={itemsPerRow.toString()}
+          icon={this._makeIcon('th')}
+          hasNavArrow={Platform.OS === 'ios'}
+          onPress={() => navigate('SettingsDetail', {
+            title: 'Items Per Row',
+            type: 'itemsPerRow',
+            values: [2, 3, 4, 5, 6],
+            updateFn: setItemsPerRow,
+            generateTitleFn: ((c) => c.toString() + ' items per row'),
+          })} />
+        <SettingsList.Item
+          title='Hidden Sites'
+          titleInfo={hiddenSites.length.toString()}
+          icon={this._makeIcon('ban')}
+          hasNavArrow={Platform.OS === 'ios'}
+          onPress={() => navigate('SettingsHiddenSites')} />
+        <SettingsList.Item
+         hasNavArrow={false}
+         switchState={gridImagesOnly}
+         icon={this._makeIcon('picture-o')}
+         switchOnValueChange={setGridImagesOnly}
+         hasSwitch={true}
+         title='Display images only'/>
+      </SettingsList>
     )
   }
 
@@ -99,6 +110,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   currency: state.settings.currency,
   itemsPerRow: state.settings.itemsPerRow,
+  hiddenSites: state.settings.hiddenSites,
   gridImagesOnly: state.settings.gridImagesOnly,
 })
 

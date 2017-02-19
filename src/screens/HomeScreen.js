@@ -6,7 +6,7 @@ import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import Grid from 'react-native-grid-component'
 
-import { ITEM_MARGIN, DEAL_URL } from '../constants'
+import { ITEM_MARGIN, DEAL_URL, COLOUR_SPINNER } from '../constants'
 import DealItem from '../components/DealItem'
 import * as actions from '../actions'
 
@@ -51,7 +51,9 @@ class HomeScreen extends React.Component<void, Props, State> {
         itemsPerRow={this.props.itemsPerRow}
         refreshControl={<RefreshControl
           refreshing={this.props.refreshing}
-          onRefresh={this.props.fetchDeals} /> }
+          onRefresh={this.props.fetchDeals}
+          colors={[COLOUR_SPINNER]}
+          tintColor={COLOUR_SPINNER} /> }
        />
     )
   }
@@ -79,9 +81,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchDeals: () => {
-    dispatch(actions.fetchDeals())
-  }
+  fetchDeals: () => dispatch(actions.fetchDeals()),
 })
 
 export default connect(

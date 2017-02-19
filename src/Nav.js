@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from './screens/HomeScreen'
 import DetailScreen from './screens/DetailScreen'
 import SettingsListScreen from './screens/SettingsListScreen'
+import SettingsHiddenSitesScreen from './screens/SettingsHiddenSitesScreen'
 import SettingsDetailScreen from './screens/SettingsDetailScreen'
 
 import { COLOUR_BG, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from './constants'
@@ -43,6 +44,12 @@ const Nav = StackNavigator({
     screen: SettingsListScreen,
     navigationOptions: {
       title: 'Settings'
+    },
+  },
+  SettingsHiddenSites: {
+    screen: SettingsHiddenSitesScreen,
+    navigationOptions: {
+      title: 'Hidden Sites',
     },
   },
   SettingsDetail: {
