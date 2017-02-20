@@ -2,6 +2,10 @@ apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
 
+def keystorePropertiesFile = rootProject.file("keystores/release.keystore.properties");
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -98,10 +102,10 @@ android {
     }
     signingConfigs {
       release {
-        storeFile file(DTD_APP_RELEASE_STORE_FILE)
-        storePassword DTD_APP_RELEASE_STORE_PASSWORD
-        keyAlias DTD_APP_RELEASE_KEY_ALIAS
-        keyPassword DTD_APP_RELEASE_KEY_PASSWORD
+        storeFile file(keystoreProperties['key.store'])
+        storePassword keystoreProperties['key.store.password']
+        keyAlias keystoreProperties['key.alias']
+        keyPassword keystoreProperties['key.alias.password']
       }
     }
     splits {

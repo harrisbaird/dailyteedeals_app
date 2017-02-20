@@ -2,7 +2,8 @@ language: android
 jdk: oraclejdk8
 before_install:
 - openssl aes-256-cbc -K $encrypted_e7ac0b1660ba_key -iv $encrypted_e7ac0b1660ba_iv
-  -in android/app/release.keystore.enc -out android/app/release.keystore -d
+  -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
 - nvm install node
 install:
 - npm install
@@ -22,9 +23,9 @@ cache:
   - node_modules
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: VIXTd+BFsp6ZnaWsbsscBQYPMRZcy09mDHPSSn9SWaT3ndvZUDvGqpk/gF5A8rrzmKdszP6gyd0xOrEwKSLh3FdUvJePUWCtXL6Xx3lQ4vPfW/oRMkyqoySnX90suVBSWmCymaZSpMnMhJD5Lnz8DmjVygRAHQhySB+zdzjsN8orSXRAxXalDAFmUya2LTYnQNZzxRKuU00AiCLtEgA8QWfK8Ah0YOqszdvGnwHpFvNHvIwhJPiY+jZhSYx0SwN8OGjtyvfynuWqX3CienIe8NzDBdracebJHr4r+BUkW6KIm7WvrEmZtDSS9GRRB5CIlpBAFe+P+09AAe6jPJDC2AzKvD0zVMqVfHAHfODPkY/eC5BJ9uSFDqUT7puhUXgAPRS+DmAEvsjotuFurZv7ePJISN69A50HyTlEenpKaHWNxGrPR11hDlk1dbYLaYOVftHqmF0ai9X8kQPgwCvZKB1/FQN9MomQJeuymrkRyrnTdDZ98w2PV2Pj1tPpiwNO95W7aDtX/bX5H1Md0Ni2+57/x0EgjxmdQrwJB8BQTbWrfobQHQ0+bT7ZpvMQdFx99BuGlAHOldG5lTJQcJCRTAcwuapB+I/HOmP1RCLCMEAVXDcMrSR4Sa2nsw4kuYN5+9fWI6ILVk7+e5u0mF5vJvH2lux+zeKczLDU21ue/6M=
-  file: android/app/build/outputs/apk/app-release.apk
+  file: $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release.apk
   on:
     repo: harrisbaird/dailyteedeals_app
-    tags: true
