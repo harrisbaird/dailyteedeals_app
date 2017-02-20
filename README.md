@@ -2,5 +2,18 @@
 
 React native app for discovering daily tees.
 
+## Build and run iOS app
+
+```bash
+yarn install
+react-native run-ios
+```
+
+## Build and run Android app
+```bash
+yarn install
+react-native run-android
+```
+
 ## Please note:
 The backend api endpoint is currently private and undocumented. You can however use `TEST_KEY` to build and test the app.
