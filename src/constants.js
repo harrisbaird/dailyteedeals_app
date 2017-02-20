@@ -1,3 +1,5 @@
+export const API_ROOT = 'https://api.dailyteedeals.com/v3'
+
 export const ITEM_MARGIN = 1
 
 export const COLOUR_HEADER_BG = '#15151d'

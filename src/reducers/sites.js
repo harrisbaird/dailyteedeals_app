@@ -1,6 +1,6 @@
 /* @flow */
 
-import * as actions from '../actions'
+import { SITES } from '../actions'
 
 const initialState = {
   items: [],
@@ -8,19 +8,20 @@ const initialState = {
 }
 
 export default function sitesState (state = initialState, action) {
+  console.log(action);
   switch (action.type) {
-    case actions.SITES_FETCH_REQUEST:
+    case SITES.REQUEST:
     return {
       ...state,
       refreshing: true,
     }
-    case actions.SITES_FETCH_SUCCESS:
+    case SITES.SUCCESS:
     return {
       ...state,
-      items: action.items,
+      items: action.response.sites,
       refreshing: false,
     }
-    case actions.SITES_FETCH_FAILED:
+    case SITES.FAILURE:
     return {
       ...state,
       message: action.message,

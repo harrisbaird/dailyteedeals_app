@@ -1,46 +1,41 @@
 /* @flow */
 
 import secrets from '../../secrets.json'
+import { API_ROOT } from '../constants'
 
-const API_ROOT = 'https://api.dailyteedeals.com/v3'
+const REQUEST = 'REQUEST'
+const SUCCESS = 'SUCCESS'
+const FAILURE = 'FAILURE'
 
-export const DEALS_FETCH_REQUEST = 'DEALS_FETCH_REQUEST'
-export const DEALS_FETCH_SUCCESS = 'DEALS_FETCH_SUCCESS'
-export const DEALS_FETCH_FAILED = 'DEALS_FETCH_FAILED'
+function createRequestTypes(base) {
+  return [REQUEST, SUCCESS, FAILURE].reduce((acc, type) => {
+		acc[type] = `${base}_${type}`
+		return acc
+	}, {})
+}
 
-export const SITES_FETCH_REQUEST = 'SITES_FETCH_REQUEST'
-export const SITES_FETCH_SUCCESS = 'SITES_FETCH_SUCCESS'
-export const SITES_FETCH_FAILED = 'SITES_FETCH_FAILED'
+export const DEALS = createRequestTypes('DEALS')
+export const SITES = createRequestTypes('SITES')
 
 export const SETTINGS_SET_ITEMS_PER_ROW = 'SETTINGS_SET_ITEMS_PER_ROW'
 export const SETTINGS_SET_CURRENCY = 'SETTINGS_SET_CURRENCY'
 export const SETTINGS_SET_GRID_IMAGES_ONLY = 'SETTINGS_SET_GRID_IMAGES_ONLY'
 export const SETTINGS_SET_SITE_HIDDEN = 'SETTINGS_SET_SITE_HIDDEN'
 
-function requestDeals () {
-  return {
-    type: DEALS_FETCH_REQUEST
-  }
+function action(type, payload = {}) {
+  return {type, ...payload}
 }
 
-function receiveDeals (json) {
-  return {
-    type: DEALS_FETCH_SUCCESS,
-    items: json.products
-  }
+export const deals = {
+  request: () => action(DEALS.REQUEST),
+  success: (response) => action(DEALS.SUCCESS, {response}),
+  failure: (response, error) => action(DEALS.FAILURE, {response, error}),
 }
 
-function requestSites () {
-  return {
-    type: SITES_FETCH_REQUEST
-  }
-}
-
-function receiveSites (json) {
-  return {
-    type: SITES_FETCH_SUCCESS,
-    items: json.sites
-  }
+export const sites = {
+  request: () => action(SITES.REQUEST),
+  success: (response) => action(SITES.SUCCESS, {response}),
+  failure: (response, error) => action(SITES.FAILURE, {response, error}),
 }
 
 export const setItemsPerRow = (value: number) => ({
@@ -71,10 +66,10 @@ export function fetchDeals () {
   url = `${API_ROOT}/deals?key=${secrets.apiKey}`
 
   return dispatch => {
-    dispatch(requestDeals())
+    dispatch(deals.request())
     return fetch(url)
       .then(response => response.json())
-      .then(json => dispatch(receiveDeals(json)))
+      .then(json => dispatch(deals.success(json)))
   }
 }
 
