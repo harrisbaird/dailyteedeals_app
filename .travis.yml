@@ -29,3 +29,4 @@ deploy:
   file: $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release.apk
   on:
     repo: harrisbaird/dailyteedeals_app
+    tags: true
