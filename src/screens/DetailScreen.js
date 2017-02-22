@@ -1,12 +1,12 @@
 /* @flow */
 
 import React from 'react';
-import { ScrollView, Dimensions } from 'react-native'
+import { ScrollView, Dimensions, Platform } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ProgressiveImage from '../components/ProgressiveImage'
-import ShareButton from '../components/ShareButton'
 import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
+import { showShareDialog } from '../utils'
 
 type Props = {
   navigation: StackNavigator,
@@ -15,15 +15,16 @@ type Props = {
 export default class DetailScreen extends React.Component <void, Props, void> {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
-    header: ({ navigate }) => ({
+    header: ({ navigate, state }) => {
+      return {
       style: { backgroundColor : COLOUR_HEADER_BG },
       tintColor: COLOUR_HEADER_TEXT,
       right: <Icon.Button
-        name="share"
-        title="ADD"
+        name={Platform.OS == 'ios' ? 'share' : 'share-alt'}
+        title="Share"
         backgroundColor='transparent'
-        onPress={() => navigate('SettingsList')} />
-    })
+        onPress={() => showShareDialog(state.params.product)} />
+    }}
   }
 
   render() {
@@ -38,7 +39,6 @@ export default class DetailScreen extends React.Component <void, Props, void> {
           thumbnailURL={state.params.product.images.thumb_300}
           imageURL={state.params.product.images.thumb_1200}
         />
-        <ShareButton product={state.params.product}/>
       </ScrollView>
     );
   }

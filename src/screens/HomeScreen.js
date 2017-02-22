@@ -35,7 +35,7 @@ class HomeScreen extends React.Component<void, Props, State> {
       tintColor: COLOUR_HEADER_TEXT,
       right: <Icon.Button
         name="cog"
-        title="ADD"
+        title="Settings"
         backgroundColor='transparent'
         onPress={() => navigate('SettingsList')} />
     })
