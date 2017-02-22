@@ -1,3 +1,7 @@
+/* @flow */
+
+import { Platform } from 'react-native'
+
 export const API_ROOT = 'https://api.dailyteedeals.com/v3'
 
 export const ITEM_MARGIN = 1
@@ -11,6 +15,8 @@ export const COLOUR_SPINNER = '#ccc'
 export const COLOUR_BLACK = '#000'
 export const COLOUR_WHITE = '#fff'
 export const COLOUR_TRANSPARENT = 'transparent'
+
+export const COLOUR_SETTINGS_BORDER = Platform.OS == 'ios' ? COLOUR_SPINNER : COLOUR_TRANSPARENT
 
 
 export const CURRENCIES = {

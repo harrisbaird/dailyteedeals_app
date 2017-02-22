@@ -7,7 +7,7 @@ import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
 import Icon from '../components/Icon'
 import * as actions from '../actions/settings'
-import { CURRENCIES, COLOUR_MISC } from '../config/constants'
+import { CURRENCIES, COLOUR_MISC, COLOUR_TRANSPARENT, COLOUR_SETTINGS_BORDER } from '../config/constants'
 
 type Props = {
   navigation: StackNavigator,
@@ -29,7 +29,7 @@ class SettingsListScreen extends React.Component<void, Props, void> {
     let { currency, itemsPerRow, gridImagesOnly, hiddenSites, setCurrency, setItemsPerRow, setGridImagesOnly } = this.props
 
     return (
-      <SettingsList borderColor='#c8c7cc' defaultItemSize={50} style={styles.container}>
+      <SettingsList borderColor={COLOUR_SETTINGS_BORDER} style={styles.container}>
         <SettingsList.Item
           title='Currency'
           titleInfo={CURRENCIES[currency].name}
@@ -66,7 +66,7 @@ class SettingsListScreen extends React.Component<void, Props, void> {
          icon={this._makeIcon('picture')}
          switchOnValueChange={setGridImagesOnly}
          hasSwitch={true}
-         title='Display images only'/>
+         title='Display images only' />
       </SettingsList>
     )
   }
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLOUR_MISC,
       },
       android: {
-        backgroundColor: 'transparent',
+        backgroundColor: COLOUR_TRANSPARENT,
       },
     })
   },

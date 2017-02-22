@@ -1,12 +1,13 @@
 /* @flow */
 
 import React from 'react';
-import { ScrollView, RefreshControl } from 'react-native'
+import { ScrollView, RefreshControl, TouchableNativeFeedback } from 'react-native'
 import { connect } from 'react-redux'
 import SettingsList from 'react-native-settings-list'
+import TouchableItem from '../components/TouchableItem'
 import { fetchSites } from '../actions/requests'
 import { setSiteHidden } from '../actions/settings'
-import { COLOUR_SPINNER } from '../config/constants'
+import { COLOUR_SPINNER, COLOUR_SETTINGS_BORDER } from '../config/constants'
 
 type Props = {
   hiddenSites: Array<number>,
@@ -45,7 +46,7 @@ class SettingsHiddenSitesScreen extends React.Component<void, Props, void> {
           colors={[COLOUR_SPINNER]}
           tintColor={COLOUR_SPINNER} />}>
         <SettingsList
-          borderColor='#c8c7cc'
+          borderColor={COLOUR_SETTINGS_BORDER}
           useScrollView={false}>
           {sites.map((site, index) =>
             <SettingsList.Item
