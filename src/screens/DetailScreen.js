@@ -3,9 +3,9 @@
 import React from 'react';
 import { ScrollView, Dimensions, Platform } from 'react-native'
 import { StackNavigator } from 'react-navigation'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import ProgressiveImage from '../components/ProgressiveImage'
-import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
+import Icon from '../components/Icon'
+import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../config/constants'
 import { showShareDialog } from '../utils'
 
 type Props = {
@@ -20,7 +20,7 @@ export default class DetailScreen extends React.Component <void, Props, void> {
       style: { backgroundColor : COLOUR_HEADER_BG },
       tintColor: COLOUR_HEADER_TEXT,
       right: <Icon.Button
-        name={Platform.OS == 'ios' ? 'share' : 'share-alt'}
+        name={Platform.OS == 'ios' ? 'share-ios' : 'share-android'}
         title="Share"
         backgroundColor='transparent'
         onPress={() => showShareDialog(state.params.product)} />

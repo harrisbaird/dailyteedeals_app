@@ -8,7 +8,7 @@ import SettingsListScreen from './screens/SettingsListScreen'
 import SettingsHiddenSitesScreen from './screens/SettingsHiddenSitesScreen'
 import SettingsDetailScreen from './screens/SettingsDetailScreen'
 
-import { COLOUR_BG, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from './constants'
+import { COLOUR_BG, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from './config/constants'
 
 const defaultStyles = {
   cardStyle: { backgroundColor: COLOUR_BG },

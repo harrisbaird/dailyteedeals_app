@@ -8,7 +8,6 @@ const initialState = {
 }
 
 export default function dealsState (state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case DEALS.REQUEST:
     return {

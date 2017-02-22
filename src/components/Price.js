@@ -3,7 +3,7 @@
 import React from 'react';
 import { Text } from 'react-native'
 import { connect } from 'react-redux'
-import { CURRENCIES } from '../constants'
+import { CURRENCIES } from '../config/constants'
 
 type Props = {
   prices: {[key: string]: any},

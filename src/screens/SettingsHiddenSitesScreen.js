@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import SettingsList from 'react-native-settings-list'
 import { fetchSites } from '../actions/requests'
 import { setSiteHidden } from '../actions/settings'
-import { COLOUR_SPINNER } from '../constants'
+import { COLOUR_SPINNER } from '../config/constants'
 
 type Props = {
   hiddenSites: Array<number>,

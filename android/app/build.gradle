@@ -139,7 +139,7 @@ android {
 }
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'FontAwesome.ttf' ]
+    iconFontNames: [ 'fontello.ttf' ]
 ]
 
 dependencies {

@@ -5,10 +5,10 @@ import { View, StyleSheet, Dimensions, TouchableOpacity, RefreshControl } from '
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import Grid from 'react-native-grid-component'
-import Icon from 'react-native-vector-icons/FontAwesome'
 
-import { ITEM_MARGIN, COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
+import { ITEM_MARGIN, COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../config/constants'
 import DealItem from '../components/DealItem'
+import Icon from '../components/Icon'
 import { fetchDeals } from '../actions/requests'
 
 type Props = {

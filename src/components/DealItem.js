@@ -3,9 +3,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { COLOUR_BLACK, COLOUR_WHITE, COLOUR_TRANSPARENT } from '../constants'
+import { COLOUR_BLACK, COLOUR_WHITE, COLOUR_TRANSPARENT } from '../config/constants'
 import ProgressiveImage from './ProgressiveImage'
+import Icon from './Icon'
 import Price from './Price'
 
 type Props = {
@@ -54,7 +54,7 @@ class DealItem extends React.Component<void, Props, State> {
     return (
       <View style={styles.overlay}>
         <View style={styles.icons}>
-          { data.last_chance && <Icon name="clock-o" style={[styles.overlayShadow, styles.icon]} /> }
+          { data.last_chance && <Icon name="clock" style={[styles.overlayShadow, styles.icon]} /> }
         </View>
 
         <View style={styles.bottomText}>

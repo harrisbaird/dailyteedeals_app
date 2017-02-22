@@ -5,8 +5,8 @@ import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { COLOUR_MISC } from '../constants'
+import Icon from '../components/Icon'
+import { COLOUR_MISC } from '../config/constants'
 
 type Props = {
   navigation: StackNavigator,

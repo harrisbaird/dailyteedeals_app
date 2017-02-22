@@ -2,6 +2,9 @@
 
 React native app for discovering daily tees.
 
+## Features
+* Progressive image enhancement
+
 ## Build and run iOS app
 
 ```bash

@@ -1,7 +1,7 @@
 /* @flow */
 
 import { DEALS, SITES } from './types'
-import { API_ROOT } from '../constants'
+import { API_ROOT } from '../config/constants'
 
 
 function requestAction(endpoint, type) {

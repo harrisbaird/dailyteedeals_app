@@ -5,9 +5,9 @@ import { StyleSheet, View, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '../components/Icon'
 import * as actions from '../actions/settings'
-import { CURRENCIES, COLOUR_MISC } from '../constants'
+import { CURRENCIES, COLOUR_MISC } from '../config/constants'
 
 type Props = {
   navigation: StackNavigator,
@@ -45,7 +45,7 @@ class SettingsListScreen extends React.Component<void, Props, void> {
         <SettingsList.Item
           title='Items Per Row'
           titleInfo={itemsPerRow.toString()}
-          icon={this._makeIcon('th')}
+          icon={this._makeIcon('grid')}
           hasNavArrow={Platform.OS === 'ios'}
           onPress={() => navigate('SettingsDetail', {
             title: 'Items Per Row',
@@ -57,13 +57,13 @@ class SettingsListScreen extends React.Component<void, Props, void> {
         <SettingsList.Item
           title='Hidden Sites'
           titleInfo={hiddenSites.length.toString()}
-          icon={this._makeIcon('ban')}
+          icon={this._makeIcon('block')}
           hasNavArrow={Platform.OS === 'ios'}
           onPress={() => navigate('SettingsHiddenSites')} />
         <SettingsList.Item
          hasNavArrow={false}
          switchState={gridImagesOnly}
-         icon={this._makeIcon('picture-o')}
+         icon={this._makeIcon('picture')}
          switchOnValueChange={setGridImagesOnly}
          hasSwitch={true}
          title='Display images only'/>
