@@ -77,9 +77,9 @@ export function fetchSites() {
   url = `${API_ROOT}/sites?key=${secrets.apiKey}`
 
   return dispatch => {
-    dispatch(requestSites())
+    dispatch(sites.request())
     return fetch(url)
       .then(response => response.json())
-      .then(json => dispatch(receiveSites(json)))
+      .then(json => dispatch(sites.success(json)))
   }
 }
