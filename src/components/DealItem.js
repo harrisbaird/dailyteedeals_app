@@ -4,6 +4,7 @@ import React from 'react'
 import { View, Text, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { COLOUR_BLACK, COLOUR_WHITE, COLOUR_TRANSPARENT } from '../constants'
 import ProgressiveImage from './ProgressiveImage'
 import Price from './Price'
 
@@ -37,31 +38,31 @@ class DealItem extends React.Component<void, Props, State> {
     let { animationValue } = this.state
 
     return (
-      <Animated.View style={{ flex: 1, opacity: animationValue, transform: [{scale: animationValue}]}}>
+      <Animated.View style={{opacity: animationValue, transform: [{scale: animationValue}]}}>
         <ProgressiveImage
-          style={{flex:1, height: itemHeight}}
+          style={{height: itemHeight}}
           backgroundColor={data.images.background_color}
           thumbnailURL={data.images.loader}
           imageURL={data.images.thumb_300}>
-          { !gridImagesOnly && this._renderExtras(data)  }
+          { !gridImagesOnly && this._renderOverlay(data)  }
         </ProgressiveImage>
       </Animated.View>
     )
   }
 
-  _renderExtras(data: Object) {
+  _renderOverlay(data: Object) {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.overlay}>
         <View style={styles.icons}>
-          { data.last_chance && <Icon name="clock-o" style={[styles.overlay, styles.icon]} /> }
+          { data.last_chance && <Icon name="clock-o" style={[styles.overlayShadow, styles.icon]} /> }
         </View>
 
-        <View style={[styles.bottomText]}>
-          <View style={{ flexDirection: 'row' }}>
-            <Price prices={data.prices} style={[{ marginRight: 5, fontWeight: 'bold' }, styles.overlay, styles.subText]} />
-            <Text style={[styles.overlay, styles.subText]}>{data.site.name}</Text>
+        <View style={styles.bottomText}>
+          <View style={styles.topText}>
+            <Price prices={data.prices} style={[styles.overlayShadow, styles.subText]} />
+            <Text style={[styles.overlayShadow, styles.subText]}>{data.site.name}</Text>
           </View>
-          <Text style={[styles.overlay, styles.designNameText]} numberOfLines={1}>{data.design.name}</Text>
+          <Text style={[styles.overlayShadow, styles.designNameText]} numberOfLines={1}>{data.design.name}</Text>
         </View>
       </View>
     )
@@ -82,6 +83,9 @@ var styles = StyleSheet.create({
   icon: {
     fontSize: 20,
   },
+  topText: {
+    flexDirection: 'row'
+  },
   bottomText: {
     flex: 1,
     alignItems: 'flex-end',
@@ -89,12 +93,15 @@ var styles = StyleSheet.create({
     padding: 5,
   },
   overlay: {
-    color: 'white',
-    backgroundColor: 'transparent',
+    flex: 1,
+  },
+  overlayShadow: {
+    color: COLOUR_WHITE,
+    backgroundColor: COLOUR_TRANSPARENT,
     fontSize: 16,
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
-    textShadowColor: '#000'
+    textShadowColor: COLOUR_BLACK
   },
   designNameText: {
     alignItems: 'flex-end',
@@ -104,5 +111,7 @@ var styles = StyleSheet.create({
   },
   subText: {
     fontSize: 12,
+    marginLeft: 5,
+    fontWeight: 'bold',
   }
 });

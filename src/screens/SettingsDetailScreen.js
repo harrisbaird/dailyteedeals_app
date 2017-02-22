@@ -1,13 +1,12 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import * as actions from '../actions'
-import { CURRENCIES, COLOUR_MISC } from '../constants'
+import { COLOUR_MISC } from '../constants'
 
 type Props = {
   navigation: StackNavigator,
@@ -28,7 +27,7 @@ class SettingsDetailScreen extends React.Component<void, Props, void> {
     let currentValue = this.props[type]
 
     return (
-      <View style={{flex:1}}>
+      <View style={styles.container}>
         <SettingsList borderColor='#c8c7cc'>
           {values.map((c, index) =>
             <SettingsList.Item
@@ -45,6 +44,9 @@ class SettingsDetailScreen extends React.Component<void, Props, void> {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   iconContainer: {
     flex: 1,
     justifyContent: 'center',

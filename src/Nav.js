@@ -1,9 +1,6 @@
 /* @flow */
 
-import React from 'react'
-import { Button } from 'react-native'
 import { StackNavigator } from 'react-navigation'
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 import HomeScreen from './screens/HomeScreen'
 import DetailScreen from './screens/DetailScreen'
@@ -14,7 +11,7 @@ import SettingsDetailScreen from './screens/SettingsDetailScreen'
 import { COLOUR_BG, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from './constants'
 
 const defaultStyles = {
-  cardStyle: { backgroundColor: COLOUR_BG},
+  cardStyle: { backgroundColor: COLOUR_BG },
   navigationOptions: {
     header: {
       style: { backgroundColor : COLOUR_HEADER_BG },

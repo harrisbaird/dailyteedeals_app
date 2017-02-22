@@ -8,7 +8,6 @@ const initialState = {
 }
 
 export default function sitesState (state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case SITES.REQUEST:
     return {

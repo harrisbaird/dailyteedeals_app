@@ -33,7 +33,7 @@ export default class ProgressiveImage extends React.Component<void, Props, State
     let { backgroundColor, thumbnailURL, imageURL } = this.props
 
     return (
-      <View style={[this.props.style, { backgroundColor: backgroundColor }]}>
+      <View style={[this.props.style, {backgroundColor: backgroundColor}]}>
         <Image
           style={styles.image}
           source={{uri: thumbnailURL}}>
@@ -44,7 +44,7 @@ export default class ProgressiveImage extends React.Component<void, Props, State
           </Animated.Image>
         </Image>
 
-        <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}>
+        <View style={styles.childrenContainer}>
           {this.props.children}
         </View>
       </View>
@@ -56,4 +56,11 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
   },
+  childrenContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  }
 })

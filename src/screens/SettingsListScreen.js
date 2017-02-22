@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native'
+import { StyleSheet, View, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
@@ -19,7 +19,7 @@ type Props = {
   setGridImagesOnly: Function,
 }
 
-class SettingsListScreen extends React.Component {
+class SettingsListScreen extends React.Component<void, Props, void> {
   static navigationOptions = {
     title: 'Settings'
   }
@@ -29,7 +29,7 @@ class SettingsListScreen extends React.Component {
     let { currency, itemsPerRow, gridImagesOnly, hiddenSites, setCurrency, setItemsPerRow, setGridImagesOnly } = this.props
 
     return (
-      <SettingsList borderColor='#c8c7cc' defaultItemSize={50} style={{flex:1}}>
+      <SettingsList borderColor='#c8c7cc' defaultItemSize={50} style={styles.container}>
         <SettingsList.Item
           title='Currency'
           titleInfo={CURRENCIES[currency].name}
@@ -81,6 +81,9 @@ class SettingsListScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   iconContainer: {
     marginLeft:15,
     height: 30,

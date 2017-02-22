@@ -1,15 +1,9 @@
 /* @flow */
 
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  ListView,
-  Text,
-  Dimensions,
-} from 'react-native'
+import { ScrollView, Dimensions } from 'react-native'
 import { StackNavigator } from 'react-navigation'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import ProgressiveImage from '../components/ProgressiveImage'
 import ShareButton from '../components/ShareButton'
 import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
@@ -21,6 +15,15 @@ type Props = {
 export default class DetailScreen extends React.Component <void, Props, void> {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
+    header: ({ navigate }) => ({
+      style: { backgroundColor : COLOUR_HEADER_BG },
+      tintColor: COLOUR_HEADER_TEXT,
+      right: <Icon.Button
+        name="share"
+        title="ADD"
+        backgroundColor='transparent'
+        onPress={() => navigate('SettingsList')} />
+    })
   }
 
   render() {

@@ -1,13 +1,13 @@
 /* @flow */
 
 import React from 'react';
-import { View, Button, Dimensions, TouchableOpacity, RefreshControl } from 'react-native'
+import { View, StyleSheet, Dimensions, TouchableOpacity, RefreshControl } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import Grid from 'react-native-grid-component'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import { ITEM_MARGIN, DEAL_URL, COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
+import { ITEM_MARGIN, COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 import DealItem from '../components/DealItem'
 import * as actions from '../actions'
 
@@ -24,6 +24,10 @@ type State = {
 }
 
 class HomeScreen extends React.Component<void, Props, State> {
+  state: State = {
+    itemHeight: 100,
+  }
+
   static navigationOptions = {
     title: 'Daily Tee Deals',
     header: ({ navigate }) => ({
@@ -34,11 +38,7 @@ class HomeScreen extends React.Component<void, Props, State> {
         title="ADD"
         backgroundColor='transparent'
         onPress={() => navigate('SettingsList')} />
-      })
-  }
-
-  state: State = {
-    itemHeight: 100,
+    })
   }
 
   componentDidMount() {
@@ -56,8 +56,6 @@ class HomeScreen extends React.Component<void, Props, State> {
   }
 
   render() {
-    const { navigate } = this.props.navigation
-
     return (
       <Grid
         data={this.props.deals}
@@ -74,7 +72,7 @@ class HomeScreen extends React.Component<void, Props, State> {
 
   _renderItem(data: Object, row: number, col: number) {
     return (
-      <View key={data.id} style={{flex:1, margin: ITEM_MARGIN}}>
+      <View key={data.id} style={styles.item}>
         <TouchableOpacity onPress={this._showDetail.bind(this, data)}>
           <DealItem data={data} itemHeight={this.state.itemHeight} />
         </TouchableOpacity>
@@ -87,6 +85,13 @@ class HomeScreen extends React.Component<void, Props, State> {
     navigate('Detail', { product: data, title: data.design.name })
   }
 }
+
+const styles = StyleSheet.create({
+  item: {
+    flex:1,
+    margin: ITEM_MARGIN
+  }
+})
 
 const mapStateToProps = (state) => ({
   deals: state.deals.items,

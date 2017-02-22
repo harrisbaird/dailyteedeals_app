@@ -22,5 +22,8 @@ module.exports = {
       "jsx": true
     }
   },
-
+  "env": {
+    // Prevent "fetch is not defined" error
+    "browser": true
+  }
 };

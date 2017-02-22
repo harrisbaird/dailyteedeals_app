@@ -8,6 +8,10 @@ export const COLOUR_BG = '#20202C'
 export const COLOUR_MISC = '#690202'
 export const COLOUR_SPINNER = '#ccc'
 
+export const COLOUR_BLACK = '#000'
+export const COLOUR_WHITE = '#fff'
+export const COLOUR_TRANSPARENT = 'transparent'
+
 
 export const CURRENCIES = {
   USD: {

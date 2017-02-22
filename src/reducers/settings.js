@@ -22,12 +22,13 @@ export default function settingsState (state = getInitialState(), action) {
         ...state,
         gridImagesOnly: action.gridImagesOnly
       }
-      case actions.SETTINGS_SET_SITE_HIDDEN:
-        let sitesIDs = action.hidden ? [...state.hiddenSites, action.siteID] :
-          state.hiddenSites.filter(element => element !== action.siteID)
+    case actions.SETTINGS_SET_SITE_HIDDEN: {
+      let sitesIDs = action.hidden ? [...state.hiddenSites, action.siteID] :
+        state.hiddenSites.filter(element => element !== action.siteID)
 
-        // Ensure the array is unique
-        return {...state, hiddenSites: Array.from(new Set(sitesIDs))}
+      // Ensure the array is unique
+      return {...state, hiddenSites: Array.from(new Set(sitesIDs))}
+    }
     default:
       return state
   }

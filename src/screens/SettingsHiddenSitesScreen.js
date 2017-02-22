@@ -1,13 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, RefreshControl } from 'react-native'
+import { ScrollView, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
-import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import * as actions from '../actions'
-import { CURRENCIES, COLOUR_MISC, COLOUR_SPINNER } from '../constants'
+import { COLOUR_SPINNER } from '../constants'
 
 type Props = {
   hiddenSites: Array<number>,
@@ -36,13 +34,13 @@ class SettingsHiddenSitesScreen extends React.Component<void, Props, void> {
 
 
   render() {
-    let { hiddenSites, sites, refreshing, setSiteHidden } = this.props
+    let { hiddenSites, sites, refreshing, fetchSites, setSiteHidden } = this.props
 
     return (
       <ScrollView
         refreshControl={<RefreshControl
-          refreshing={this.props.refreshing}
-          onRefresh={this.props.fetchSites}
+          refreshing={refreshing}
+          onRefresh={fetchSites}
           colors={[COLOUR_SPINNER]}
           tintColor={COLOUR_SPINNER} />}>
         <SettingsList
@@ -64,19 +62,6 @@ class SettingsHiddenSitesScreen extends React.Component<void, Props, void> {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  spinner: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
-
 
 const mapStateToProps = (state) => ({
   hiddenSites: state.settings.hiddenSites,

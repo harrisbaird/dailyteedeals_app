@@ -54,8 +54,6 @@ export const setGridImagesOnly = (enabled: boolean) => ({
 })
 
 export const setSiteHidden = (siteID: number, hidden: boolean) => {
-  console.log(siteID, hidden);
-
   return{
   type: SETTINGS_SET_SITE_HIDDEN,
   siteID: siteID,
@@ -63,7 +61,7 @@ export const setSiteHidden = (siteID: number, hidden: boolean) => {
 }}
 
 export function fetchDeals () {
-  url = `${API_ROOT}/deals?key=${secrets.apiKey}`
+  let url = `${API_ROOT}/deals?key=${secrets.apiKey}`
 
   return dispatch => {
     dispatch(deals.request())
@@ -74,7 +72,7 @@ export function fetchDeals () {
 }
 
 export function fetchSites() {
-  url = `${API_ROOT}/sites?key=${secrets.apiKey}`
+  let url = `${API_ROOT}/sites?key=${secrets.apiKey}`
 
   return dispatch => {
     dispatch(sites.request())
