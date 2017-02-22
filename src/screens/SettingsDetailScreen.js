@@ -18,6 +18,10 @@ type Props = {
 }
 
 class SettingsDetailScreen extends React.Component<void, Props, void> {
+  static navigationOptions = {
+    title: ({ state }) => `${state.params.title}`,
+  }
+
   render() {
     let { type, values, generateTitleFn, updateFn } = this.props.navigation.state.params
 

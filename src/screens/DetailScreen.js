@@ -19,6 +19,10 @@ type Props = {
 }
 
 export default class DetailScreen extends React.Component <void, Props, void> {
+  static navigationOptions = {
+    title: ({ state }) => `${state.params.title}`,
+  }
+
   render() {
     const {state} = this.props.navigation
     const imageSize = Dimensions.get('window').width

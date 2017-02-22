@@ -26,6 +26,10 @@ class SettingsHiddenSitesScreen extends React.Component<void, Props, void> {
    * Performs an http request to load the complete list of sites.
    */
 
+  static navigationOptions = {
+    title: 'Hidden Sites',
+  }
+
   componentDidMount() {
     this.props.fetchSites()
   }

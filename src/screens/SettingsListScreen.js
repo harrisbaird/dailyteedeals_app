@@ -20,6 +20,10 @@ type Props = {
 }
 
 class SettingsListScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Settings'
+  }
+
   render() {
     let { navigate } = this.props.navigation
     let { currency, itemsPerRow, gridImagesOnly, hiddenSites, setCurrency, setItemsPerRow, setGridImagesOnly } = this.props

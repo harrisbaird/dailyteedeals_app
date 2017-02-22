@@ -5,8 +5,9 @@ import { View, Button, Dimensions, TouchableOpacity, RefreshControl } from 'reac
 import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import Grid from 'react-native-grid-component'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
-import { ITEM_MARGIN, DEAL_URL, COLOUR_SPINNER } from '../constants'
+import { ITEM_MARGIN, DEAL_URL, COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 import DealItem from '../components/DealItem'
 import * as actions from '../actions'
 
@@ -23,6 +24,19 @@ type State = {
 }
 
 class HomeScreen extends React.Component<void, Props, State> {
+  static navigationOptions = {
+    title: 'Daily Tee Deals',
+    header: ({ navigate }) => ({
+      style: { backgroundColor : COLOUR_HEADER_BG },
+      tintColor: COLOUR_HEADER_TEXT,
+      right: <Icon.Button
+        name="cog"
+        title="ADD"
+        backgroundColor='transparent'
+        onPress={() => navigate('SettingsList')} />
+      })
+  }
+
   state: State = {
     itemHeight: 100,
   }
