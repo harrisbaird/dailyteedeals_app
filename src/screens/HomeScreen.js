@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { ITEM_MARGIN, COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../constants'
 import DealItem from '../components/DealItem'
-import * as actions from '../actions'
+import { fetchDeals } from '../actions/requests'
 
 type Props = {
   navigation: StackNavigator,
@@ -100,7 +100,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchDeals: () => dispatch(actions.fetchDeals()),
+  fetchDeals: () => dispatch(fetchDeals()),
 })
 
 export default connect(

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import * as actions from '../actions'
+import * as actions from '../actions/settings'
 import { CURRENCIES, COLOUR_MISC } from '../constants'
 
 type Props = {

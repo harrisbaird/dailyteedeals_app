@@ -1,6 +1,6 @@
 /* @flow */
 
-import { SITES } from '../actions'
+import { SITES } from '../actions/types'
 
 const initialState = {
   items: [],
@@ -17,7 +17,7 @@ export default function sitesState (state = initialState, action) {
     case SITES.SUCCESS:
     return {
       ...state,
-      items: action.response.sites,
+      items: action.json.sites,
       refreshing: false,
     }
     case SITES.FAILURE:

@@ -4,7 +4,8 @@ import React from 'react';
 import { ScrollView, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import SettingsList from 'react-native-settings-list'
-import * as actions from '../actions'
+import { fetchSites } from '../actions/requests'
+import { setSiteHidden } from '../actions/settings'
 import { COLOUR_SPINNER } from '../constants'
 
 type Props = {
@@ -70,9 +71,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchSites: () => dispatch(actions.fetchSites()),
+  fetchSites: () => dispatch(fetchSites()),
   setSiteHidden: (siteID: number, hidden: boolean) =>
-    dispatch(actions.setSiteHidden(siteID, hidden)),
+    dispatch(setSiteHidden(siteID, hidden)),
 })
 
 export default connect(

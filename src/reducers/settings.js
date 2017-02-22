@@ -1,28 +1,28 @@
 /* @flow */
 
 import Locale from 'react-native-locale'
-import * as actions from '../actions'
+import * as types from '../actions/types'
 import { CURRENCIES } from '../constants'
 
 
 export default function settingsState (state = getInitialState(), action) {
   switch (action.type) {
-    case actions.SETTINGS_SET_CURRENCY:
+    case types.SETTINGS_SET_CURRENCY:
       return {
         ...state,
         currency: action.currency
       }
-    case actions.SETTINGS_SET_ITEMS_PER_ROW:
+    case types.SETTINGS_SET_ITEMS_PER_ROW:
       return {
         ...state,
         itemsPerRow: action.itemsPerRow
       }
-    case actions.SETTINGS_SET_GRID_IMAGES_ONLY:
+    case types.SETTINGS_SET_GRID_IMAGES_ONLY:
       return {
         ...state,
         gridImagesOnly: action.gridImagesOnly
       }
-    case actions.SETTINGS_SET_SITE_HIDDEN: {
+    case types.SETTINGS_SET_SITE_HIDDEN: {
       let sitesIDs = action.hidden ? [...state.hiddenSites, action.siteID] :
         state.hiddenSites.filter(element => element !== action.siteID)
 

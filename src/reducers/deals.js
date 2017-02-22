@@ -1,6 +1,6 @@
 /* @flow */
 
-import { DEALS } from '../actions'
+import { DEALS } from '../actions/types'
 
 const initialState = {
   items: [],
@@ -8,6 +8,7 @@ const initialState = {
 }
 
 export default function dealsState (state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case DEALS.REQUEST:
     return {
@@ -17,7 +18,7 @@ export default function dealsState (state = initialState, action) {
     case DEALS.SUCCESS:
     return {
       ...state,
-      items: action.response.products,
+      items: action.json.products,
       refreshing: false,
     }
     case DEALS.FAILURE:
