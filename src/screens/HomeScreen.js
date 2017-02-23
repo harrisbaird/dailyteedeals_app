@@ -1,18 +1,16 @@
 /* @flow */
 
 import React from 'react';
-import { View, StyleSheet, Dimensions, TouchableOpacity, RefreshControl } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { Dimensions, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import Grid from 'react-native-grid-component'
 
-import { ITEM_MARGIN, COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../config/constants'
+import { COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../config/constants'
 import DealItem from '../components/DealItem'
 import Icon from '../components/Icon'
 import { fetchDeals } from '../actions/requests'
 
 type Props = {
-  navigation: StackNavigator,
   fetchDeals: Function,
   deals: Array<any>,
   refreshing: boolean,
@@ -59,8 +57,12 @@ class HomeScreen extends React.Component<void, Props, State> {
     return (
       <Grid
         data={this.props.deals}
-        renderItem={this._renderItem.bind(this)}
         itemsPerRow={this.props.itemsPerRow}
+        renderItem={(data) => <DealItem
+          key={data.id}
+          data={data}
+          itemHeight={this.state.itemHeight}
+          navigation={this.props.navigation} /> }
         refreshControl={<RefreshControl
           refreshing={this.props.refreshing}
           onRefresh={this.props.fetchDeals}
@@ -69,29 +71,7 @@ class HomeScreen extends React.Component<void, Props, State> {
        />
     )
   }
-
-  _renderItem(data: Object, row: number, col: number) {
-    return (
-      <View key={data.id} style={styles.item}>
-        <TouchableOpacity onPress={this._showDetail.bind(this, data)}>
-          <DealItem data={data} itemHeight={this.state.itemHeight} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
-  _showDetail(data) {
-    const { navigate } = this.props.navigation
-    navigate('Detail', { product: data, title: data.design.name })
-  }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    flex:1,
-    margin: ITEM_MARGIN
-  }
-})
 
 const mapStateToProps = (state) => ({
   deals: state.deals.items,

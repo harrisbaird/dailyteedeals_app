@@ -3,12 +3,15 @@
 import React from 'react'
 import { View, Text, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import { COLOUR_BLACK, COLOUR_WHITE, COLOUR_TRANSPARENT } from '../config/constants'
+import { StackNavigator } from 'react-navigation'
+import { ITEM_MARGIN, COLOUR_BLACK, COLOUR_WHITE, COLOUR_TRANSPARENT } from '../config/constants'
 import ProgressiveImage from './ProgressiveImage'
+import TouchableItem from './TouchableItem'
 import Icon from './Icon'
 import Price from './Price'
 
 type Props = {
+  navigation: StackNavigator,
   data: Object,
   gridImagesOnly: boolean,
   itemHeight: number,
@@ -38,15 +41,17 @@ class DealItem extends React.Component<void, Props, State> {
     let { animationValue } = this.state
 
     return (
-      <Animated.View style={{opacity: animationValue, transform: [{scale: animationValue}]}}>
-        <ProgressiveImage
-          style={{height: itemHeight}}
-          backgroundColor={data.images.background_color}
-          thumbnailURL={data.images.loader}
-          imageURL={data.images.thumb_300}>
-          { !gridImagesOnly && this._renderOverlay(data)  }
-        </ProgressiveImage>
-      </Animated.View>
+        <Animated.View style={[styles.container, {opacity: animationValue, transform: [{scale: animationValue}]}]}>
+          <TouchableItem onPress={this._navigateToDetail.bind(this, data)} borderless={true}>
+            <ProgressiveImage
+              style={{height: itemHeight}}
+              backgroundColor={data.images.background_color}
+              thumbnailURL={data.images.loader}
+              imageURL={data.images.thumb_300}>
+              { !gridImagesOnly && this._renderOverlay(data)  }
+            </ProgressiveImage>
+          </TouchableItem>
+        </Animated.View>
     )
   }
 
@@ -67,12 +72,21 @@ class DealItem extends React.Component<void, Props, State> {
       </View>
     )
   }
+
+  _navigateToDetail(data) {
+    const { navigate } = this.props.navigation
+    navigate('Detail', { product: data, title: data.design.name })
+  }
 }
 
 const mapStateToProps = (state) => ({gridImagesOnly: state.settings.gridImagesOnly})
 export default connect(mapStateToProps)(DealItem)
 
 var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: ITEM_MARGIN
+  },
   icons: {
     flex: 1,
     flexDirection: 'row',

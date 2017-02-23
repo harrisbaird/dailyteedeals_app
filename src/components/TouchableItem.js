@@ -11,7 +11,7 @@
  *
  * Source: https://raw.githubusercontent.com/react-community/react-navigation/master/src/views/TouchableItem.js
  */
- 
+
 import React, { Component, PropTypes, Children } from 'react';
 import {
   Platform,
@@ -65,6 +65,7 @@ export default class TouchableItem extends Component<DefaultProps, Props, void> 
         <TouchableNativeFeedback
           {...this.props}
           style={null}
+          useForeground={true}
           background={
             TouchableNativeFeedback.Ripple(
               this.props.pressColor,
