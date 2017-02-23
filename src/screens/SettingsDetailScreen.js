@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
 import Icon from '../components/Icon'
-import { COLOUR_MISC, COLOUR_SETTINGS_BORDER } from '../config/constants'
+import { COLOUR_ACCENT, COLOUR_SETTINGS_BORDER } from '../config/constants'
 
 type Props = {
   navigation: StackNavigator,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 20,
-    color: COLOUR_MISC,
+    color: COLOUR_ACCENT,
     alignItems:'center',
     justifyContent:'center'
   }

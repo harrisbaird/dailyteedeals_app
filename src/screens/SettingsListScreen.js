@@ -1,13 +1,14 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, View, Platform } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
+import LinearGradient from 'react-native-linear-gradient'
 import Icon from '../components/Icon'
 import * as actions from '../actions/settings'
-import { CURRENCIES, COLOUR_MISC, COLOUR_TRANSPARENT, COLOUR_SETTINGS_BORDER } from '../config/constants'
+import { CURRENCIES, COLOUR_WHITE, COLOUR_TRANSPARENT, COLOUR_SETTINGS_BORDER, COLOUR_GRADIENT_START, COLOUR_GRADIENT_END } from '../config/constants'
 
 type Props = {
   navigation: StackNavigator,
@@ -73,9 +74,12 @@ class SettingsListScreen extends React.Component<void, Props, void> {
 
   _makeIcon(icon) {
     return (
-      <View style={styles.iconContainer}>
+      <LinearGradient
+        colors={[COLOUR_GRADIENT_START, COLOUR_GRADIENT_END]}
+        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+        style={styles.iconContainer}>
         <Icon name={icon} style={styles.icon} />
-      </View>
+      </LinearGradient>
     )
   }
 }
@@ -91,26 +95,12 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5,
-    ...Platform.select({
-      ios: {
-        backgroundColor: COLOUR_MISC,
-      },
-      android: {
-        backgroundColor: COLOUR_TRANSPARENT,
-      },
-    })
+    borderRadius: 5
   },
   icon: {
     fontSize: 20,
-    ...Platform.select({
-      ios: {
-        color: '#fff',
-      },
-      android: {
-        color: COLOUR_MISC,
-      },
-    })
+    backgroundColor: COLOUR_TRANSPARENT,
+    color: COLOUR_WHITE
   }
 })
 

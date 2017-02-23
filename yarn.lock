@@ -3424,6 +3424,10 @@ react-native-grid-component@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-grid-component/-/react-native-grid-component-1.0.1.tgz#11b2ad6914a2bd83634cb2ad2cf4d83e747c1647"
 
+react-native-linear-gradient@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.0.0.tgz#7442c00e1fcd9fca329119dcbaf744d12bcd1b5a"
+
 react-native-locale@^0.0.14:
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/react-native-locale/-/react-native-locale-0.0.14.tgz#1ec0ef27dcb69818378d678ea293e661a5d1a7d7"

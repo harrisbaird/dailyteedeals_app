@@ -6,10 +6,14 @@ export const API_ROOT = 'https://api.dailyteedeals.com/v3'
 
 export const ITEM_MARGIN = 1
 
-export const COLOUR_HEADER_BG = '#15151d'
+export const COLOUR_HEADER_BG = '#0a0a0a'
 export const COLOUR_HEADER_TEXT = '#FFF'
-export const COLOUR_BG = '#20202C'
-export const COLOUR_MISC = '#690202'
+export const COLOUR_BG = '#0e1828'
+export const COLOUR_ACCENT = '#2f025a'
+export const COLOUR_GRADIENT_START = '#b11b78'
+export const COLOUR_GRADIENT_END = '#342594'
+
+
 export const COLOUR_SPINNER = '#ccc'
 
 export const COLOUR_BLACK = '#000'
