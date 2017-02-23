@@ -17,15 +17,7 @@ type Props = {
   itemsPerRow: number,
 }
 
-type State = {
-  itemHeight: number,
-}
-
-class HomeScreen extends React.Component<void, Props, State> {
-  state: State = {
-    itemHeight: 100,
-  }
-
+class HomeScreen extends React.Component<void, Props, void> {
   static navigationOptions = {
     title: 'Daily Tee Deals',
     header: ({ navigate }) => ({
@@ -49,11 +41,11 @@ class HomeScreen extends React.Component<void, Props, State> {
     if(this.props.itemsPerRow != nextProps.itemsPerRow) {
       nextProps.fetchDeals()
     }
-
-    this.setState({ itemHeight: Dimensions.get('window').width / nextProps.itemsPerRow })
   }
 
   render() {
+    let itemHeight = Dimensions.get('window').width / this.props.itemsPerRow
+
     return (
       <Grid
         data={this.props.deals}
@@ -61,7 +53,7 @@ class HomeScreen extends React.Component<void, Props, State> {
         renderItem={(data) => <DealItem
           key={data.id}
           data={data}
-          itemHeight={this.state.itemHeight}
+          itemHeight={itemHeight}
           navigation={this.props.navigation} /> }
         refreshControl={<RefreshControl
           refreshing={this.props.refreshing}

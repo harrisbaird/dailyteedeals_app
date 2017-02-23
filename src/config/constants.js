@@ -13,7 +13,6 @@ export const COLOUR_ACCENT = '#2f025a'
 export const COLOUR_GRADIENT_START = '#b11b78'
 export const COLOUR_GRADIENT_END = '#342594'
 
-
 export const COLOUR_SPINNER = '#ccc'
 
 export const COLOUR_BLACK = '#000'
@@ -21,7 +20,6 @@ export const COLOUR_WHITE = '#fff'
 export const COLOUR_TRANSPARENT = 'transparent'
 
 export const COLOUR_SETTINGS_BORDER = Platform.OS == 'ios' ? COLOUR_SPINNER : COLOUR_TRANSPARENT
-
 
 export const CURRENCIES = {
   USD: {
