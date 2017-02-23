@@ -82,7 +82,7 @@ class DealItem extends React.Component<void, Props, State> {
 const mapStateToProps = (state) => ({gridImagesOnly: state.settings.gridImagesOnly})
 export default connect(mapStateToProps)(DealItem)
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     margin: ITEM_MARGIN
