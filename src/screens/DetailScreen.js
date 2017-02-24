@@ -1,11 +1,12 @@
 /* @flow */
 
 import React from 'react';
-import { ScrollView, Dimensions, Platform } from 'react-native'
+import { Text, Button, StyleSheet, ScrollView, Dimensions, Platform, Linking } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import ProgressiveImage from '../components/ProgressiveImage'
 import Icon from '../components/Icon'
-import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../config/constants'
+import Price from '../components/Price'
+import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT, COLOUR_WHITE } from '../config/constants'
 import { showShareDialog } from '../utils'
 
 type Props = {
@@ -30,16 +31,29 @@ export default class DetailScreen extends React.Component <void, Props, void> {
   render() {
     const {state} = this.props.navigation
     const imageSize = Dimensions.get('window').width
+    let product = state.params.product
 
     return (
       <ScrollView>
         <ProgressiveImage
           style={{ width: imageSize, height: imageSize }}
-          backgroundColor={state.params.product.images.background_color}
-          thumbnailURL={state.params.product.images.thumb_300}
-          imageURL={state.params.product.images.thumb_1200}
+          backgroundColor={product.images.background_color}
+          thumbnailURL={product.images.thumb_300}
+          imageURL={product.images.thumb_1200}
         />
+        <Button
+          title='Buy'
+          color='#fff'
+          onPress={() => Linking.openURL(product.buy_url)} />
+        <Text style={styles.text}>Design by {product.design.artist.name}</Text>
+        <Price prices={product.prices} style={styles.text} />
       </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    color: COLOUR_WHITE
+  }
+})
