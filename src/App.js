@@ -4,7 +4,7 @@ import React from 'react'
 import { View, StatusBar, StyleSheet, AsyncStorage } from 'react-native'
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
-import { COLOUR_HEADER_BG } from './config/constants'
+import { COLOUR_HEADER_BG } from './config/theme'
 import store from './stores'
 import Nav from './Nav'
 

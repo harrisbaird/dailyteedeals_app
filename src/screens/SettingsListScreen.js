@@ -8,7 +8,8 @@ import SettingsList from 'react-native-settings-list'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from '../components/Icon'
 import * as actions from '../actions/settings'
-import { CURRENCIES, COLOUR_WHITE, COLOUR_TRANSPARENT, COLOUR_SETTINGS_BORDER, COLOUR_GRADIENT_START, COLOUR_GRADIENT_END } from '../config/constants'
+import CURRENCIES from '../config/currencies'
+import { COLOUR_WHITE, COLOUR_TRANSPARENT, COLOUR_SETTINGS_BORDER, COLOUR_GRADIENT_START, COLOUR_GRADIENT_END } from '../config/theme'
 
 type Props = {
   navigation: StackNavigator,

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
 import Icon from '../components/Icon'
-import { COLOUR_ACCENT, COLOUR_SETTINGS_BORDER } from '../config/constants'
+import { COLOUR_ACCENT, COLOUR_SETTINGS_BORDER } from '../config/theme'
 
 type Props = {
   navigation: StackNavigator,

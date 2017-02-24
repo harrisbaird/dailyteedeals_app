@@ -1,8 +1,8 @@
 /* @flow */
 
 import { DEALS, SITES } from './types'
-import { API_ROOT } from '../config/constants'
 
+const API_ROOT = 'https://api.dailyteedeals.com/v3'
 
 function requestAction(endpoint, type) {
   let url = `${API_ROOT}/${endpoint}?key=TEST_KEY`

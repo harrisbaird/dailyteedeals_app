@@ -5,7 +5,7 @@ import { Dimensions, RefreshControl } from 'react-native'
 import { connect } from 'react-redux'
 import Grid from 'react-native-grid-component'
 
-import { COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../config/constants'
+import { COLOUR_SPINNER, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from '../config/theme'
 import DealItem from '../components/DealItem'
 import Icon from '../components/Icon'
 import { fetchDeals } from '../actions/requests'

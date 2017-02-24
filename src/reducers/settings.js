@@ -2,7 +2,7 @@
 
 import Locale from 'react-native-locale'
 import * as types from '../actions/types'
-import { CURRENCIES } from '../config/constants'
+import CURRENCIES from '../config/currencies'
 
 
 export default function settingsState (state = getInitialState(), action) {

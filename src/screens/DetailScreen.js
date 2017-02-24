@@ -6,7 +6,7 @@ import { StackNavigator } from 'react-navigation'
 import ProgressiveImage from '../components/ProgressiveImage'
 import Icon from '../components/Icon'
 import Price from '../components/Price'
-import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT, COLOUR_WHITE } from '../config/constants'
+import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT, COLOUR_WHITE } from '../config/theme'
 import { showShareDialog } from '../utils'
 
 type Props = {
