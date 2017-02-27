@@ -6,7 +6,7 @@ import { StackNavigator } from 'react-navigation'
 import ProgressiveImage from '../components/ProgressiveImage'
 import Icon from '../components/Icon'
 import Price from '../components/Price'
-import { COLOUR_HEADER_BG, COLOUR_HEADER_TEXT, COLOUR_WHITE } from '../config/theme'
+import Theme from '../config/theme'
 import { showShareDialog } from '../utils'
 
 type Props = {
@@ -16,16 +16,13 @@ type Props = {
 export default class DetailScreen extends React.Component <void, Props, void> {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
-    header: ({ navigate, state }) => {
-      return {
-      style: { backgroundColor : COLOUR_HEADER_BG },
-      tintColor: COLOUR_HEADER_TEXT,
+    header: ({ navigate, state }) => ({
       right: <Icon.Button
         name={Platform.OS == 'ios' ? 'share-ios' : 'share-android'}
         title="Share"
         backgroundColor='transparent'
         onPress={() => showShareDialog(state.params.product)} />
-    }}
+    })
   }
 
   render() {
@@ -54,6 +51,6 @@ export default class DetailScreen extends React.Component <void, Props, void> {
 
 const styles = StyleSheet.create({
   text: {
-    color: COLOUR_WHITE
+    color: Theme.colourWhite
   }
 })

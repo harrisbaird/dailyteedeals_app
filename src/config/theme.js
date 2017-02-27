@@ -2,19 +2,28 @@
 
 import { Platform } from 'react-native'
 
-export const ITEM_MARGIN = 1
+export default class Theme {
+  static itemMargin = 1
 
-export const COLOUR_HEADER_BG = '#0a0a0a'
-export const COLOUR_HEADER_TEXT = '#FFF'
-export const COLOUR_BG = '#0e1828'
-export const COLOUR_ACCENT = '#2f025a'
-export const COLOUR_GRADIENT_START = '#b11b78'
-export const COLOUR_GRADIENT_END = '#342594'
+  // Common colours
+  static colourBlack = '#000'
+  static colourWhite = '#fff'
+  static colourGrey25 = '#404040'
+  static colourGrey75 = '#BFBFBF'
+  static colourTransparent = 'transparent'
 
-export const COLOUR_SPINNER = '#ccc'
+  // App theme colours
+  static colourBG = '#21212a'
+  static colourBGAlt = '#0B0B0F'
+  static colourAccent = '#C72B20'
 
-export const COLOUR_BLACK = '#000'
-export const COLOUR_WHITE = '#fff'
-export const COLOUR_TRANSPARENT = 'transparent'
+  // Platform specific colours
+  static colourSettingsBorder() {
+    return Platform.OS === 'ios' ? this.colourGrey75 : this.colourTransparent
+  }
 
-export const COLOUR_SETTINGS_BORDER = Platform.OS == 'ios' ? COLOUR_SPINNER : COLOUR_TRANSPARENT
+  static colourSpinner() {
+    return Platform.OS === 'ios' ? this.colourGrey75 : this.colourAccent
+  }
+}
+Object.freeze(Theme)

@@ -124,7 +124,6 @@ project.ext.vectoricons = [
 ]
 
 dependencies {
-    compile project(':react-native-linear-gradient')
     compile project(':react-native-locale')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])

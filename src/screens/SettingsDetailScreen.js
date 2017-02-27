@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
 import Icon from '../components/Icon'
-import { COLOUR_ACCENT, COLOUR_SETTINGS_BORDER } from '../config/theme'
+import Theme from '../config/theme'
 
 type Props = {
   navigation: StackNavigator,
@@ -28,7 +28,7 @@ class SettingsDetailScreen extends React.Component<void, Props, void> {
 
     return (
       <View style={styles.container}>
-        <SettingsList borderColor={COLOUR_SETTINGS_BORDER}>
+        <SettingsList borderColor={Theme.colourSettingsBorder()}>
           {values.map((c, index) =>
             <SettingsList.Item
               title={generateTitleFn(c)}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 20,
-    color: COLOUR_ACCENT,
+    color: Theme.colourAccent,
     alignItems:'center',
     justifyContent:'center'
   }

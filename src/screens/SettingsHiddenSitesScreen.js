@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import SettingsList from 'react-native-settings-list'
 import { fetchSites } from '../actions/requests'
 import { setSiteHidden } from '../actions/settings'
-import { COLOUR_SPINNER, COLOUR_SETTINGS_BORDER } from '../config/theme'
+import Theme from '../config/theme'
 
 type Props = {
   hiddenSites: Array<number>,
@@ -42,10 +42,10 @@ class SettingsHiddenSitesScreen extends React.Component<void, Props, void> {
         refreshControl={<RefreshControl
           refreshing={refreshing}
           onRefresh={fetchSites}
-          colors={[COLOUR_SPINNER]}
-          tintColor={COLOUR_SPINNER} />}>
+          colors={[Theme.colourSpinner()]}
+          tintColor={Theme.colourSpinner()} />}>
         <SettingsList
-          borderColor={COLOUR_SETTINGS_BORDER}
+          borderColor={Theme.colourSettingsBorder()}
           useScrollView={false}>
           {sites.map((site, index) =>
             <SettingsList.Item

@@ -1,31 +1,63 @@
 /* @flow */
 
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 
-import HomeScreen from './screens/HomeScreen'
-import DetailScreen from './screens/DetailScreen'
-import SettingsListScreen from './screens/SettingsListScreen'
+import DealsScreen from './screens/DealsScreen'
+import CategoriesScreen from './screens/CategoriesScreen'
+import EventsScreen from './screens/EventsScreen'
+import DealDetailScreen from './screens/DealDetailScreen'
+import SettingsScreen from './screens/SettingsScreen'
 import SettingsHiddenSitesScreen from './screens/SettingsHiddenSitesScreen'
 import SettingsDetailScreen from './screens/SettingsDetailScreen'
 
-import { COLOUR_BG, COLOUR_HEADER_BG, COLOUR_HEADER_TEXT } from './config/theme'
+import Theme from './config/theme'
 
 const defaultStyles = {
-  cardStyle: { backgroundColor: COLOUR_BG },
+  cardStyle: { backgroundColor: Theme.colourBG },
+  headerMode: 'screen',
+}
+
+const visibleHeader = {
   navigationOptions: {
     header: {
-      style: { backgroundColor : COLOUR_HEADER_BG },
-      tintColor: COLOUR_HEADER_TEXT,
+      enabled: false,
+      style: { backgroundColor : Theme.colourBGAlt },
+      tintColor: Theme.colourWhite,
     }
   }
 }
 
-const Nav = StackNavigator({
-  Home: { screen: HomeScreen },
-  Detail: { screen: DetailScreen },
-  SettingsList: { screen: SettingsListScreen },
-  SettingsHiddenSites: { screen: SettingsHiddenSitesScreen },
-  SettingsDetail: { screen: SettingsDetailScreen },
-}, defaultStyles);
+const Home = TabNavigator({
+  Deals: { screen: DealsScreen },
+  Categories: { screen: CategoriesScreen },
+  Events: { screen: EventsScreen },
+  Settings: { screen: SettingsScreen },
+}, {
+  swipeEnabled: true,
+  animationEnabled: true,
+  navigationOptions: {
+    header: {
+      visible: false
+    }
+  },
+  tabBarOptions: {
+    activeTintColor: Theme.colourAccent,
+    inactiveTintColor: Theme.colourGrey75,
+    pressColor: Theme.colourGrey25,
+    indicatorStyle: {
+      backgroundColor: Theme.colourTransparent,
+    },
+    style: {
+      backgroundColor: Theme.colourBGAlt,
+    }
+  }
+})
 
-export default Nav
+const Main = StackNavigator({
+  Home: { screen: Home },
+  DealDetail: { screen: DealDetailScreen, ...visibleHeader },
+  SettingsHiddenSites: { screen: SettingsHiddenSitesScreen, ...visibleHeader },
+  SettingsDetail: { screen: SettingsDetailScreen, ...visibleHeader },
+}, defaultStyles)
+
+export default Main

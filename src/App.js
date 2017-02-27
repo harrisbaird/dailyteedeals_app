@@ -4,7 +4,7 @@ import React from 'react'
 import { View, StatusBar, StyleSheet, AsyncStorage } from 'react-native'
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
-import { COLOUR_HEADER_BG } from './config/theme'
+import Theme from './config/theme'
 import store from './stores'
 import Nav from './Nav'
 
@@ -29,7 +29,10 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor={COLOUR_HEADER_BG} barStyle='light-content' />
+        <StatusBar
+          backgroundColor={Theme.colourBGAlt}
+          transparent={true}
+          barStyle='light-content' />
         <Provider store={store}>
           <Nav />
         </Provider>
