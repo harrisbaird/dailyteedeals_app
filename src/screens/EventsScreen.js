@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import Theme from '../config/theme'
 import TabIcon from '../components/TabIcon'
 
-export default class EventsScreen extends React.Component {
+export default class EventsScreen extends React.PureComponent {
   static navigationOptions = {
     title: 'Events',
     tabBar: {

@@ -22,7 +22,7 @@ type Props = {
   setGridImagesOnly: Function,
 }
 
-class SettingsListScreen extends React.Component<void, Props, void> {
+class SettingsListScreen extends React.PureComponent<void, Props, void> {
   static navigationOptions = {
     title: 'Settings',
     tabBar: {

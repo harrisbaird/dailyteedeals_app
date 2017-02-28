@@ -16,7 +16,7 @@ type Props = {
   setItemsPerRow: Function,
 }
 
-class SettingsDetailScreen extends React.Component<void, Props, void> {
+class SettingsDetailScreen extends React.PureComponent<void, Props, void> {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
   }

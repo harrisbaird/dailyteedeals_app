@@ -17,7 +17,7 @@ type State = {
   currentStatusBarHeight: number
 }
 
-export default class StatusBarPadding extends React.Component<void, Props, State> {
+export default class StatusBarPadding extends React.PureComponent<void, Props, State> {
   state: State = {
     currentStatusBarHeight: StatusBarSizeIOS.currentHeight
   }

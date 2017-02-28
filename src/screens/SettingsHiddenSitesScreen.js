@@ -17,7 +17,7 @@ type Props = {
 }
 
 
-class SettingsHiddenSitesScreen extends React.Component<void, Props, void> {
+class SettingsHiddenSitesScreen extends React.PureComponent<void, Props, void> {
   /**
    * The hidden sites setting screen.
    *

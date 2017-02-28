@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import Theme from '../config/theme'
 import TabIcon from '../components/TabIcon'
 
-export default class CategoriesScreen extends React.Component {
+class CategoriesScreen extends React.PureComponent<void, Props, void> {
   static navigationOptions = {
     title: 'Categories',
     tabBar: {

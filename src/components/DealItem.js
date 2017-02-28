@@ -21,7 +21,7 @@ type State = {
   animationValue: Animated.Value,
 }
 
-class DealItem extends React.Component<void, Props, State> {
+class DealItem extends React.PureComponent<void, Props, State> {
   state: State = {
     animationValue: new Animated.Value(0),
   }

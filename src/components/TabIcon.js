@@ -9,7 +9,7 @@ type Props = {
   tintColor: string
 }
 
-export default class TabIcon extends React.Component<void, Props, void> {
+export default class TabIcon extends React.PureComponent<void, Props, void> {
   render() {
     return <Icon
       name={this.props.name}

@@ -17,7 +17,7 @@ type Props = {
   itemsPerRow: number,
 }
 
-class HomeScreen extends React.Component<void, Props, void> {
+class HomeScreen extends React.PureComponent<void, Props, void> {
   static navigationOptions = {
     title: "Today's Deals",
     tabBar: {

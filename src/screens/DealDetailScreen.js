@@ -13,7 +13,7 @@ type Props = {
   navigation: StackNavigator,
 }
 
-export default class DetailScreen extends React.Component <void, Props, void> {
+export default class DetailScreen extends React.PureComponent <void, Props, void> {
   static navigationOptions = {
     title: ({ state }) => `${state.params.title}`,
     header: ({ navigate, state }) => ({

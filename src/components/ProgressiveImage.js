@@ -14,7 +14,7 @@ type State = {
   imageOpacity: Animated.Value;
 };
 
-export default class ProgressiveImage extends React.Component<void, Props, State> {
+export default class ProgressiveImage extends React.PureComponent<void, Props, State> {
   state: State = {
     imageOpacity: new Animated.Value(0),
   }
