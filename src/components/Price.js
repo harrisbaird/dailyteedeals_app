@@ -11,7 +11,7 @@ type Props = {
   style?: Object,
 }
 
-class Price extends React.PureComponent<void, Props, void>{
+class Price extends React.PureComponent<void, Props, void> {
   render() {
     let { prices, currency, style } = this.props
     let price = prices[currency]

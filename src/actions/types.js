@@ -11,6 +11,7 @@ function createRequestTypes(base) {
 	}, {})
 }
 
+export const CATEGORIES = createRequestTypes('CATEGORIES')
 export const DEALS = createRequestTypes('DEALS')
 export const SITES = createRequestTypes('SITES')
 

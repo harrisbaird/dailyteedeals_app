@@ -1,6 +1,6 @@
 /* @flow */
 
-import { DEALS, SITES } from './types'
+import { CATEGORIES, DEALS, SITES } from './types'
 
 const API_ROOT = 'https://api.dailyteedeals.com/v3'
 
@@ -16,5 +16,6 @@ function requestAction(endpoint, type) {
   }
 }
 
+export const fetchCategories = dispatch => requestAction('categories', CATEGORIES)
 export const fetchDeals = dispatch => requestAction('deals', DEALS)
 export const fetchSites = dispatch => requestAction('sites', SITES)
