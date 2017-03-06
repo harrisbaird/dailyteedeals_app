@@ -1,11 +1,10 @@
 /* @flow */
 
 import React from 'react'
-import { View, Text, StyleSheet, Animated } from 'react-native'
+import { View, Text, Image, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import Theme from '../config/theme'
-import ProgressiveImage from './ProgressiveImage'
 import TouchableItem from './TouchableItem'
 import Icon from './Icon'
 import Price from './Price'
@@ -14,7 +13,7 @@ type Props = {
   navigation: StackNavigator,
   data: Object,
   gridImagesOnly: boolean,
-  itemHeight: number,
+  itemSize: number,
 }
 
 type State = {
@@ -37,21 +36,18 @@ class DealItem extends React.PureComponent<void, Props, State> {
   }
 
   render() {
-    let { data, gridImagesOnly, itemHeight } = this.props
+    let { data, gridImagesOnly, itemSize } = this.props
     let { animationValue } = this.state
+    let imageStyle = { width: itemSize, height: itemSize, backgroundColor: data.images.background_color }
 
     return (
-        <Animated.View style={[styles.container, {opacity: animationValue, transform: [{scale: animationValue}]}]}>
-          <TouchableItem onPress={this._navigateToDetail.bind(this, data)} borderless={true}>
-            <ProgressiveImage
-              style={{height: itemHeight}}
-              backgroundColor={data.images.background_color}
-              thumbnailURL={data.images.loader}
-              imageURL={data.images.thumb_300}>
-              { !gridImagesOnly && this._renderOverlay(data)  }
-            </ProgressiveImage>
-          </TouchableItem>
-        </Animated.View>
+      <Animated.View style={[styles.container, imageStyle, {opacity: animationValue, transform: [{scale: animationValue}]}]}>
+        <TouchableItem onPress={this._navigateToDetail.bind(this, data)} borderless={true}>
+          <Image style={imageStyle} source={{uri: data.images.thumb_300}}>
+            { !gridImagesOnly && this._renderOverlay(data)  }
+          </Image>
+        </TouchableItem>
+      </Animated.View>
     )
   }
 
@@ -65,9 +61,8 @@ class DealItem extends React.PureComponent<void, Props, State> {
           <Price prices={data.prices} style={[styles.overlayShadow]} />
         </View>
 
-
         <View style={styles.bottomOverlay}>
-          <Text style={[styles.overlayShadow, styles.subText]}>{data.site.name}</Text>
+          <Text style={[styles.overlayShadow, styles.subText]} numberOfLines={1}>{data.site.name}</Text>
           <Text style={[styles.overlayShadow, styles.designNameText]} numberOfLines={1}>{data.design.name}</Text>
         </View>
       </View>
@@ -86,7 +81,6 @@ export default connect(mapStateToProps)(DealItem)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: Theme.itemMargin
   },
   icons: {
     flex: 1,

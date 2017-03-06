@@ -2,11 +2,12 @@
 
 import React from 'react'
 import { View, Text, StyleSheet, ListView, Dimensions, RefreshControl } from 'react-native'
+import FlatList from 'react-native/Libraries/CustomComponents/Lists/FlatList'
 import { connect } from 'react-redux'
 import Theme from '../config/theme'
 import TabIcon from '../components/TabIcon'
 import StatusBarPadding from '../components/StatusBarPadding'
-import CategoryRow from '../components/CategoryRow'
+import CategoryItem from '../components/CategoryItem'
 import { fetchCategories } from '../actions/requests'
 
 type Props = {
@@ -15,15 +16,7 @@ type Props = {
   refreshing: boolean,
 }
 
-type State = {
-  dataSource: ListView.DataSource
-}
-
-class CategoriesScreen extends React.Component<void, Props, State> {
-  state: State = {
-    dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-  }
-
+class CategoriesScreen extends React.Component<void, Props, void> {
   static navigationOptions = {
     title: "Categories",
     tabBar: {
@@ -36,20 +29,19 @@ class CategoriesScreen extends React.Component<void, Props, State> {
   }
 
   render() {
-    let itemHeight = Dimensions.get('window').width / 3
-    let ds = this.state.dataSource.cloneWithRows(this.props.categories)
+    let itemSize = Dimensions.get('window').width / this.props.itemsPerRow
 
     return (
       <StatusBarPadding style={styles.container}>
-        <ListView
-          dataSource={ds}
-          renderHeader={this._renderHeader}
-          renderRow={(data) => <CategoryRow data={data} itemHeight={itemHeight} />}
-          refreshControl={<RefreshControl
-            refreshing={this.props.refreshing}
-            onRefresh={this.props.fetchCategories}
-            colors={[Theme.colourSpinner()]}
-            tintColor={Theme.colourSpinner()} /> } />
+        <FlatList
+          data={this.props.categories}
+          HeaderComponent={this._renderHeader}
+          renderItem={({item}) => <CategoryItem data={item} itemSize={itemSize} />}
+          numColumns={this.props.itemsPerRow}
+          keyExtractor={(item: Object, index: number) => item.id}
+          onRefresh={this.props.fetchCategories}
+          refreshing={this.props.refreshing}
+        />
       </StatusBarPadding>
     )
   }
@@ -81,6 +73,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
+  itemsPerRow: state.settings.itemsPerRow,
   categories: state.categories.items,
   refreshing: state.categories.refreshing,
 })

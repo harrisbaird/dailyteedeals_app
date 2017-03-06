@@ -1,9 +1,8 @@
 /* @flow */
 
 import React from 'react';
-import { Text, Button, StyleSheet, ScrollView, Dimensions, Platform, Linking } from 'react-native'
+import { Text, Image, Button, StyleSheet, ScrollView, Dimensions, Platform, Linking } from 'react-native'
 import { StackNavigator } from 'react-navigation'
-import ProgressiveImage from '../components/ProgressiveImage'
 import Icon from '../components/Icon'
 import Price from '../components/Price'
 import Theme from '../config/theme'
@@ -32,11 +31,9 @@ export default class DetailScreen extends React.PureComponent <void, Props, void
 
     return (
       <ScrollView>
-        <ProgressiveImage
+        <Image
           style={{ width: imageSize, height: imageSize }}
-          backgroundColor={product.images.background_color}
-          thumbnailURL={product.images.thumb_300}
-          imageURL={product.images.thumb_1200}
+          source={{ uri: product.images.thumb_1200 }}
         />
         <Button
           title='Buy'

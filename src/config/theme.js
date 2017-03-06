@@ -3,8 +3,6 @@
 import { Platform } from 'react-native'
 
 export default class Theme {
-  static itemMargin = 1
-
   // Common colours
   static colourBlack = '#000'
   static colourWhite = '#fff'

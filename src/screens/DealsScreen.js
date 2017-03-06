@@ -1,9 +1,9 @@
 /* @flow */
 
 import React from 'react'
-import { View, Text, Dimensions, RefreshControl, StyleSheet } from 'react-native'
+import { View, Text, Dimensions, StyleSheet } from 'react-native'
+import FlatList from 'react-native/Libraries/CustomComponents/Lists/FlatList'
 import { connect } from 'react-redux'
-import Grid from 'react-native-grid-component'
 import Theme from '../config/theme'
 import TabIcon from '../components/TabIcon'
 import DealItem from '../components/DealItem'
@@ -25,7 +25,6 @@ class HomeScreen extends React.PureComponent<void, Props, void> {
     },
   }
 
-
   componentDidMount() {
     this.props.fetchDeals()
   }
@@ -39,25 +38,23 @@ class HomeScreen extends React.PureComponent<void, Props, void> {
   }
 
   render() {
-    let itemHeight = Dimensions.get('window').width / this.props.itemsPerRow
+    let itemSize = Dimensions.get('window').width / this.props.itemsPerRow
 
     return (
       <StatusBarPadding style={styles.container}>
-        <Grid
+        <FlatList
           data={this.props.deals}
-          itemsPerRow={this.props.itemsPerRow}
-          renderHeader={this._renderHeader}
-          renderItem={(data) => <DealItem
-            key={data.id}
-            data={data}
-            itemHeight={itemHeight}
+          HeaderComponent={this._renderHeader}
+          renderItem={({item}) => <DealItem
+            key={item.id}
+            data={item}
+            itemSize={itemSize}
             navigation={this.props.navigation} /> }
-          refreshControl={<RefreshControl
-            refreshing={this.props.refreshing}
-            onRefresh={this.props.fetchDeals}
-            colors={[Theme.colourSpinner()]}
-            tintColor={Theme.colourSpinner()} /> }
-         />
+          numColumns={this.props.itemsPerRow}
+          keyExtractor={(item: Object, index: number) => item.id}
+          onRefresh={this.props.fetchDeals}
+          refreshing={this.props.refreshing}
+        />
      </StatusBarPadding>
     )
   }

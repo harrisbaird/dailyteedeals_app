@@ -33,8 +33,8 @@ const Home = TabNavigator({
   Events: { screen: EventsScreen },
   Settings: { screen: SettingsScreen },
 }, {
-  swipeEnabled: true,
-  animationEnabled: true,
+  swipeEnabled: false,
+  animationEnabled: false,
   navigationOptions: {
     header: {
       visible: false
