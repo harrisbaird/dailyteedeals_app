@@ -19,7 +19,7 @@ export default class CategoryItem extends React.PureComponent<void, Props, void>
     return (
       <View style={imageStyle}>
         <Image key={data.id} source={{uri: data.images.thumb_300}} style={[styles.image, imageStyle]}>
-          <Text style={styles.overlayText} numberOfLines={3}>{data.name}</Text>
+          <Text style={styles.overlayText} numberOfLines={1}>{data.name}</Text>
         </Image>
       </View>
     )
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   overlayText: {
     color: Theme.colourWhite,
     backgroundColor: Theme.colourTransparent,
-    fontSize: 20,
+    fontSize: 14,
     padding: 10,
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,

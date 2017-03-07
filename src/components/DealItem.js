@@ -22,17 +22,17 @@ type State = {
 
 class DealItem extends React.PureComponent<void, Props, State> {
   state: State = {
-    animationValue: new Animated.Value(0),
+    animationValue: new Animated.Value(1),
   }
 
   componentDidMount() {
-    Animated.timing(
-      this.state.animationValue,
-      {
-        toValue: 1,
-        useNativeDriver: true,
-      }
-    ).start()
+    // Animated.timing(
+    //   this.state.animationValue,
+    //   {
+    //     toValue: 1,
+    //     useNativeDriver: true,
+    //   }
+    // ).start()
   }
 
   render() {
@@ -116,8 +116,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
     textAlign: 'right',
+    fontSize: 14,
   },
   subText: {
-    fontSize: 12,
+    fontSize: 11,
   }
 });
