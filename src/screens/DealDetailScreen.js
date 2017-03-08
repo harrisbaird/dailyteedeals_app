@@ -1,12 +1,10 @@
 /* @flow */
 
 import React from 'react';
-import { Text, Image, Button, StyleSheet, ScrollView, Dimensions, Platform, Linking } from 'react-native'
+import { Platform } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Icon from '../components/Icon'
-import Price from '../components/Price'
-import Theme from '../config/theme'
-import { showShareDialog } from '../utils'
+import DealDetail from '../components/DealDetail'
 
 type Props = {
   navigation: StackNavigator,
@@ -19,35 +17,13 @@ export default class DetailScreen extends React.PureComponent <void, Props, void
       right: <Icon.Button
         name={Platform.OS == 'ios' ? 'share-ios' : 'share-android'}
         title="Share"
-        backgroundColor='transparent'
-        onPress={() => showShareDialog(state.params.product)} />
+        backgroundColor='transparent' />
     })
   }
 
   render() {
     const {state} = this.props.navigation
-    const imageSize = Dimensions.get('window').width
-    let product = state.params.product
-
-    return (
-      <ScrollView>
-        <Image
-          style={{ width: imageSize, height: imageSize }}
-          source={{ uri: product.images.thumb_1200 }}
-        />
-        <Button
-          title='Buy'
-          color='#fff'
-          onPress={() => Linking.openURL(product.buy_url)} />
-        <Text style={styles.text}>Design by {product.design.artist.name}</Text>
-        <Price prices={product.prices} style={styles.text} />
-      </ScrollView>
-    );
+    let index = state.params.index
+    return <DealDetail index={index} />
   }
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: Theme.colourWhite
-  }
-})

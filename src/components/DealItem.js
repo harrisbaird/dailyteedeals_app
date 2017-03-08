@@ -1,11 +1,10 @@
 /* @flow */
 
 import React from 'react'
-import { View, Text, Image, StyleSheet, Animated } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import Theme from '../config/theme'
-import TouchableItem from './TouchableItem'
 import Icon from './Icon'
 import Price from './Price'
 
@@ -14,40 +13,23 @@ type Props = {
   data: Object,
   gridImagesOnly: boolean,
   itemSize: number,
+  index: number,
 }
 
-type State = {
-  animationValue: Animated.Value,
-}
 
-class DealItem extends React.PureComponent<void, Props, State> {
-  state: State = {
-    animationValue: new Animated.Value(1),
-  }
-
-  componentDidMount() {
-    // Animated.timing(
-    //   this.state.animationValue,
-    //   {
-    //     toValue: 1,
-    //     useNativeDriver: true,
-    //   }
-    // ).start()
-  }
-
+class DealItem extends React.PureComponent<void, Props, void> {
   render() {
-    let { data, gridImagesOnly, itemSize } = this.props
-    let { animationValue } = this.state
+    let { data, index, gridImagesOnly, itemSize } = this.props
     let imageStyle = { width: itemSize, height: itemSize, backgroundColor: data.images.background_color }
 
     return (
-      <Animated.View style={[styles.container, imageStyle, {opacity: animationValue, transform: [{scale: animationValue}]}]}>
-        <TouchableItem onPress={this._navigateToDetail.bind(this, data)} borderless={true}>
+      <View style={[styles.container, imageStyle]}>
+        <TouchableOpacity onPress={this._navigateToDetail.bind(this, data, index)}>
           <Image style={imageStyle} source={{uri: data.images.thumb_300}}>
             { !gridImagesOnly && this._renderOverlay(data)  }
           </Image>
-        </TouchableItem>
-      </Animated.View>
+        </TouchableOpacity>
+      </View>
     )
   }
 
@@ -69,9 +51,9 @@ class DealItem extends React.PureComponent<void, Props, State> {
     )
   }
 
-  _navigateToDetail(data) {
+  _navigateToDetail(data: Object, index: number) {
     const { navigate } = this.props.navigation
-    navigate('DealDetail', { product: data, title: data.design.name })
+    navigate('DealDetail', { index: index, title: data.design.name })
   }
 }
 

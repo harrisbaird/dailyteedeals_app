@@ -12,7 +12,7 @@ import { fetchDeals } from '../actions/requests'
 
 type Props = {
   fetchDeals: Function,
-  deals: Array<any>,
+  deals: Array<Object>,
   refreshing: boolean,
   itemsPerRow: number,
 }
@@ -45,11 +45,13 @@ class HomeScreen extends React.PureComponent<void, Props, void> {
         <FlatList
           data={this.props.deals}
           HeaderComponent={this._renderHeader}
-          renderItem={({item}) => <DealItem
+          renderItem={({item, index}) => <DealItem
             key={item.id}
             data={item}
+            index={index}
             itemSize={itemSize}
-            navigation={this.props.navigation} /> }
+            navigation={this.props.navigation}
+            renderToHardwareTextureAndroid={true}  /> }
           numColumns={this.props.itemsPerRow}
           keyExtractor={(item: Object, index: number) => item.id}
           onRefresh={this.props.fetchDeals}

@@ -8,7 +8,11 @@ import Theme from './config/theme'
 import store from './stores'
 import Nav from './Nav'
 
-export default class App extends React.PureComponent {
+type State = {
+  rehydrated: boolean
+}
+
+export default class App extends React.PureComponent<void, void, State> {
   constructor() {
     super()
     this.state = { rehydrated: false }
