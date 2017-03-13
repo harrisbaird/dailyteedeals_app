@@ -32,17 +32,15 @@ class CategoriesScreen extends React.Component<void, Props, void> {
     let itemSize = Dimensions.get('window').width / this.props.itemsPerRow
 
     return (
-      <StatusBarPadding style={styles.container}>
-        <FlatList
-          data={this.props.categories}
-          HeaderComponent={this._renderHeader}
-          renderItem={({item}) => <CategoryItem data={item} itemSize={itemSize} />}
-          numColumns={this.props.itemsPerRow}
-          keyExtractor={(item: Object, index: number) => item.id}
-          onRefresh={this.props.fetchCategories}
-          refreshing={this.props.refreshing}
-        />
-      </StatusBarPadding>
+      <FlatList
+        data={this.props.categories}
+        HeaderComponent={this._renderHeader}
+        renderItem={({item}) => <CategoryItem data={item} itemSize={itemSize} />}
+        numColumns={this.props.itemsPerRow}
+        keyExtractor={(item: Object, index: number) => item.id}
+        onRefresh={this.props.fetchCategories}
+        refreshing={this.props.refreshing}
+      />
     )
   }
 

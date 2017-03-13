@@ -1,28 +1,30 @@
 /* @flow */
 
 import React from 'react';
-import { Text, Image, Button, StyleSheet, ScrollView, Dimensions, Linking } from 'react-native'
-import { connect } from 'react-redux'
+import { View, Text, Image, Button, StyleSheet, ScrollView, Linking } from 'react-native'
+import StatusBarPadding from '../components/StatusBarPadding'
 import Price from '../components/Price'
+import SquareImage from '../components/SquareImage'
 import Theme from '../config/theme'
 
 type Props = {
-  deals: Array<*>,
-  index: number
+  deal: Object,
 }
 
-class DealDetail extends React.PureComponent <void, Props, void> {
+export default class DealDetail extends React.PureComponent <void, Props, void> {
   render() {
-    const imageSize = Dimensions.get('window').width
-    let { deals, index } = this.props
-    let deal = deals[index]
+    let { deal } = this.props
 
     return (
       <ScrollView>
-        <Image
-          style={{ width: imageSize, height: imageSize }}
-          source={{ uri: deal.images.thumb_1200 }}
-        />
+        <View>
+          <StatusBarPadding style={{ backgroundColor: deal.images.background_color }} />
+          <SquareImage
+            size={Theme.screenWidth}
+            backgroundColor={deal.images.background_color}
+            uri={ deal.images.thumb_1200 }
+          />
+        </View>
         <Button
           title='Buy'
           color='#fff'
@@ -39,9 +41,3 @@ const styles = StyleSheet.create({
     color: Theme.colourWhite
   }
 })
-
-const mapStateToProps = (state) => ({
-  deals: state.deals.items,
-})
-
-export default connect(mapStateToProps)(DealDetail)

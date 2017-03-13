@@ -6,20 +6,33 @@
  */
 
 import React from 'react'
-import { View, Platform, StyleSheet } from 'react-native'
+import { View, Platform } from 'react-native'
 import StatusBarSizeIOS from 'react-native-status-bar-size'
 
 type Props = {
-  children?: React.Element<*>;
+  style: Object,
+}
+
+type DefaultProps = {
+  style: Object,
 }
 
 type State = {
-  currentStatusBarHeight: number
+  currentStatusBarHeight: number,
 }
 
-export default class StatusBarPadding extends React.PureComponent<void, Props, State> {
+export default class StatusBarPadding extends React.Component<DefaultProps, Props, State> {
+  defaultProps: DefaultProps = {
+    style: { backgroundColor: 'transparent' },
+  }
+
   state: State = {
-    currentStatusBarHeight: StatusBarSizeIOS.currentHeight
+    currentStatusBarHeight: 0
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = { currentStatusBarHeight: StatusBarSizeIOS.currentHeight }
   }
 
   componentDidMount() {
@@ -40,16 +53,7 @@ export default class StatusBarPadding extends React.PureComponent<void, Props, S
     let height = Platform.OS === 'ios' ? this.state.currentStatusBarHeight : 0
 
     return (
-      <View style={styles.container}>
-        <View style={{height: height}} />
-        { this.props.children }
-      </View>
+      <View style={[{ height: height }, this.props.style]} />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})

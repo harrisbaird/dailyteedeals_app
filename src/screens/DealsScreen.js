@@ -38,10 +38,11 @@ class HomeScreen extends React.PureComponent<void, Props, void> {
   }
 
   render() {
-    let itemSize = Dimensions.get('window').width / this.props.itemsPerRow
+    let itemSize = (Dimensions.get('window').width / this.props.itemsPerRow) - Theme.itemMargin
 
     return (
-      <StatusBarPadding style={styles.container}>
+      <View style={styles.container}>
+        <StatusBarPadding blur={true} />
         <FlatList
           data={this.props.deals}
           HeaderComponent={this._renderHeader}
@@ -50,14 +51,13 @@ class HomeScreen extends React.PureComponent<void, Props, void> {
             data={item}
             index={index}
             itemSize={itemSize}
-            navigation={this.props.navigation}
-            renderToHardwareTextureAndroid={true}  /> }
+            navigation={this.props.navigation} /> }
           numColumns={this.props.itemsPerRow}
           keyExtractor={(item: Object, index: number) => item.id}
           onRefresh={this.props.fetchDeals}
           refreshing={this.props.refreshing}
         />
-     </StatusBarPadding>
+      </View>
     )
   }
 
@@ -71,6 +71,9 @@ class HomeScreen extends React.PureComponent<void, Props, void> {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   headerContainer: {
     flex: 1,
     justifyContent: 'center',

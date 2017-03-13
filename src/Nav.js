@@ -14,10 +14,13 @@ import Theme from './config/theme'
 
 const defaultStyles = {
   cardStyle: { backgroundColor: Theme.colourBG },
-  headerMode: 'screen',
+  headerMode: 'none',
+
+
 }
 
 const visibleHeader = {
+  headerMode: 'none',
   navigationOptions: {
     header: {
       enabled: false,

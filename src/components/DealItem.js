@@ -7,6 +7,7 @@ import { StackNavigator } from 'react-navigation'
 import Theme from '../config/theme'
 import Icon from './Icon'
 import Price from './Price'
+import SquareImage from './SquareImage'
 
 type Props = {
   navigation: StackNavigator,
@@ -20,16 +21,13 @@ type Props = {
 class DealItem extends React.PureComponent<void, Props, void> {
   render() {
     let { data, index, gridImagesOnly, itemSize } = this.props
-    let imageStyle = { width: itemSize, height: itemSize, backgroundColor: data.images.background_color }
 
     return (
-      <View style={[styles.container, imageStyle]}>
-        <TouchableOpacity onPress={this._navigateToDetail.bind(this, data, index)}>
-          <Image style={imageStyle} source={{uri: data.images.thumb_300}}>
-            { !gridImagesOnly && this._renderOverlay(data)  }
-          </Image>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={this._navigateToDetail.bind(this, data, index)}>
+        <SquareImage size={itemSize} backgroundColor={data.images.background_color} uri={data.images.thumb_300} style={{margin: Theme.itemMargin}}>
+          { !gridImagesOnly && this._renderOverlay(data)  }
+        </SquareImage>
+      </TouchableOpacity>
     )
   }
 
