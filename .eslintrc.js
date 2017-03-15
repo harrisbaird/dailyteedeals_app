@@ -1,29 +1,30 @@
 module.exports = {
-  "parser": "babel-eslint",
-  "extends":  [
-    "standard",
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-native/all",
+  parser: 'babel-eslint',
+  extends: [
+    'standard',
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-native/all',
+    'plugin:flowtype/recommended'
   ],
-  "rules": {
-    "flowtype-errors/show-errors": 2,
-    "react/prop-types": 0
+  rules: {
+    'react/prop-types': 0,
+    'flowtype-errors/show-errors': 2,
+    semi: ['error', 'never']
   },
-  "plugins": [
-    "standard",
-    "promise",
-    "react",
-    "react-native",
-    "flowtype-errors",
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+  plugins: ['standard', 'promise', 'react', 'react-native', 'flowtype-errors'],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
     }
   },
-  "env": {
+  env: {
     // Prevent "fetch is not defined" error
-    "browser": true
+    browser: true
+  },
+  settings: {
+    flowtype: {
+      onlyFilesWithFlowAnnotation: true
+    }
   }
-};
+}

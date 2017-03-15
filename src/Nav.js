@@ -1,6 +1,6 @@
 /* @flow */
 
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import {StackNavigator, TabNavigator} from 'react-navigation'
 
 import DealsScreen from './screens/DealsScreen'
 import CategoriesScreen from './screens/CategoriesScreen'
@@ -13,10 +13,8 @@ import SettingsDetailScreen from './screens/SettingsDetailScreen'
 import Theme from './config/theme'
 
 const defaultStyles = {
-  cardStyle: { backgroundColor: Theme.colourBG },
-  headerMode: 'none',
-
-
+  cardStyle: {backgroundColor: Theme.colourBG},
+  headerMode: 'none'
 }
 
 const visibleHeader = {
@@ -24,43 +22,52 @@ const visibleHeader = {
   navigationOptions: {
     header: {
       enabled: false,
-      style: { backgroundColor : Theme.colourBGAlt },
-      tintColor: Theme.colourWhite,
+      style: {backgroundColor: Theme.colourBGAlt},
+      tintColor: Theme.colourWhite
     }
   }
 }
 
-const Home = TabNavigator({
-  Deals: { screen: DealsScreen },
-  Categories: { screen: CategoriesScreen },
-  Events: { screen: EventsScreen },
-  Settings: { screen: SettingsScreen },
-}, {
-  swipeEnabled: false,
-  animationEnabled: false,
-  navigationOptions: {
-    header: {
-      visible: false
-    }
+const Home = TabNavigator(
+  {
+    Deals: {screen: DealsScreen},
+    Categories: {screen: CategoriesScreen},
+    Events: {screen: EventsScreen},
+    Settings: {screen: SettingsScreen}
   },
-  tabBarOptions: {
-    activeTintColor: Theme.colourAccent,
-    inactiveTintColor: Theme.colourGrey75,
-    pressColor: Theme.colourGrey25,
-    indicatorStyle: {
-      backgroundColor: Theme.colourTransparent,
+  {
+    swipeEnabled: false,
+    animationEnabled: false,
+    navigationOptions: {
+      header: {
+        visible: false
+      }
     },
-    style: {
-      backgroundColor: Theme.colourBGAlt,
+    tabBarOptions: {
+      activeTintColor: Theme.colourAccent,
+      inactiveTintColor: Theme.colourGrey75,
+      pressColor: Theme.colourGrey25,
+      indicatorStyle: {
+        backgroundColor: Theme.colourTransparent
+      },
+      style: {
+        backgroundColor: Theme.colourBGAlt
+      }
     }
   }
-})
+)
 
-const Main = StackNavigator({
-  Home: { screen: Home },
-  DealDetail: { screen: DealDetailScreen, ...visibleHeader },
-  SettingsHiddenSites: { screen: SettingsHiddenSitesScreen, ...visibleHeader },
-  SettingsDetail: { screen: SettingsDetailScreen, ...visibleHeader },
-}, defaultStyles)
+const Main = StackNavigator(
+  {
+    Home: {screen: Home},
+    DealDetail: {screen: DealDetailScreen, ...visibleHeader},
+    SettingsHiddenSites: {
+      screen: SettingsHiddenSitesScreen,
+      ...visibleHeader
+    },
+    SettingsDetail: {screen: SettingsDetailScreen, ...visibleHeader}
+  },
+  defaultStyles
+)
 
 export default Main

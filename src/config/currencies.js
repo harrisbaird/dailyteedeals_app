@@ -4,18 +4,18 @@ const CURRENCIES = {
   USD: {
     name: 'United States Dollar',
     symbol: '$',
-    icon: 'usd',
+    icon: 'usd'
   },
   GBP: {
     name: 'British Pound',
     symbol: '£',
-    icon: 'gbp',
+    icon: 'gbp'
   },
   EUR: {
     name: 'Euro',
     symbol: '€',
-    icon: 'eur',
-  },
+    icon: 'eur'
+  }
 }
 
 export default CURRENCIES

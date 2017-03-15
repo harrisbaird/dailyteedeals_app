@@ -1,9 +1,9 @@
 /* @flow */
 
-import React from 'react';
-import { StyleSheet, View } from 'react-native'
-import { connect } from 'react-redux'
-import { StackNavigator } from 'react-navigation'
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+import {connect} from 'react-redux'
+import {StackNavigator} from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
 import Icon from '../components/Icon'
 import Theme from '../config/theme'
@@ -13,30 +13,40 @@ type Props = {
   currency: string,
   itemsPerRow: number,
   setCurrency: Function,
-  setItemsPerRow: Function,
-}
+  setItemsPerRow: Function
+};
 
 class SettingsDetailScreen extends React.PureComponent<void, Props, void> {
   static navigationOptions = {
-    title: ({ state }) => `${state.params.title}`,
-  }
+    title: ({state}) => `${state.params.title}`
+  };
 
   render() {
-    let { type, values, generateTitleFn, updateFn } = this.props.navigation.state.params
+    let {
+      type,
+      values,
+      generateTitleFn,
+      updateFn
+    } = this.props.navigation.state.params
 
     let currentValue = this.props[type]
 
     return (
       <View style={styles.container}>
         <SettingsList borderColor={Theme.colourSettingsBorder()}>
-          {values.map((c, index) =>
+          {values.map((c, index) => (
             <SettingsList.Item
               title={generateTitleFn(c)}
               key={index}
               hasNavArrow={c == currentValue}
-              arrowIcon={<View style={styles.iconContainer}><Icon name='check' style={styles.icon} /></View>}
-              onPress={() => updateFn(c)} />
-          )}
+              arrowIcon={
+                <View style={styles.iconContainer}>
+                  <Icon name="check" style={styles.icon} />
+                </View>
+              }
+              onPress={() => updateFn(c)}
+            />
+          ))}
         </SettingsList>
       </View>
     )
@@ -51,19 +61,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-end',
-    paddingRight: 15,
+    paddingRight: 15
   },
   icon: {
     fontSize: 20,
     color: Theme.colourAccent,
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currency: state.settings.currency,
-  itemsPerRow: state.settings.itemsPerRow,
+  itemsPerRow: state.settings.itemsPerRow
 })
 
 export default connect(mapStateToProps)(SettingsDetailScreen)

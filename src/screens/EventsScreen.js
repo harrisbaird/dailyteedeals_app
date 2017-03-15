@@ -1,7 +1,7 @@
 /* @flow */
 
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native'
+import React from 'react'
+import {View, Text, StyleSheet} from 'react-native'
 import Theme from '../config/theme'
 import TabIcon from '../components/TabIcon'
 
@@ -9,9 +9,9 @@ export default class EventsScreen extends React.PureComponent {
   static navigationOptions = {
     title: 'Events',
     tabBar: {
-      icon: ({ tintColor }) => (<TabIcon name='cog' tintColor={tintColor} />),
-    },
-  }
+      icon: ({tintColor}) => <TabIcon name="cog" tintColor={tintColor} />
+    }
+  };
 
   render() {
     return (
@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   text: {
-    color: Theme.colourWhite,
+    color: Theme.colourWhite
   }
 })
