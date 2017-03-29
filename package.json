@@ -1,5 +1,17 @@
 {
   "name": "DailyTeeDeals",
+  "description": "React Native App for discovering daily tees on dailyteedeals.com",
+  "license": "MIT",
+  "homepage": "http://dailyteedeals.com",
+  "bugs": "https://github.com/harrisbaird/dailyteedeals_app/issues",
+  "keywords": [
+    "React Native",
+    "Redux"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/harrisbaird/dailyteedeals_app"
+  },
   "version": "0.0.1",
   "private": true,
   "scripts": {
