@@ -2,6 +2,10 @@ apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
 
+project.ext.react = [
+   entryFile: "build/index.js",
+]
+
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -83,13 +87,13 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "com.dailyteedeals.dailyapp"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 9
         versionName "3.0"
         ndk {
@@ -120,14 +124,14 @@ android {
 }
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'fontello.ttf' ]
+    iconFontNames: [ 'fontello.ttf', 'FiraSans-Regular.ttf', 'FiraSans-Italic.ttf', 'FiraSans-SemiBold.ttf'  ]
 ]
 
 dependencies {
-    compile project(':react-native-locale')
+    compile project(':react-native-device-info')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:25.+"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
 

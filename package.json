@@ -1,5 +1,5 @@
 {
-  "name": "DailyTeeDeals",
+  "name": "dailyteedeals",
   "description": "React Native App for discovering daily tees on dailyteedeals.com",
   "license": "MIT",
   "homepage": "http://dailyteedeals.com",
@@ -16,36 +16,40 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "tsc": "tsc",
+    "prebuild": "node node_modules/.bin/rimraf build",
+    "build": "npm run tsc --",
+    "lint": "node_modules/.bin/tslint --project tsconfig.json --type-check src/**/*.ts",
+    "watch": "npm run build -- -w",
+    "start:ios": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios'",
+    "start:android": "npm run build && adb reverse tcp:8081 tcp:8081 && concurrently -r 'npm run watch' 'react-native run-android'"
   },
   "dependencies": {
-    "babel-plugin-transform-remove-console": "^6.8.1",
-    "react": "~16.0.0-alpha.3",
-    "react-native": "~0.43.0-rc.1",
-    "react-native-locale": "^0.0.14",
+    "@types/react": "^15.0.23",
+    "@types/react-native": "0.43.12",
+    "@types/react-redux": "^4.4.40",
+    "country-data": "^0.0.31",
+    "lodash": "^4.17.4",
+    "query-string": "^4.3.2",
+    "react": "16.0.0-alpha.6",
+    "react-native": "~0.43.0",
+    "react-native-device-info": "^0.10.2",
     "react-native-settings-list": "^1.4.0",
     "react-native-vector-icons": "^4.0.0",
-    "react-navigation": "^1.0.0-beta.7",
+    "react-navigation": "react-community/react-navigation",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-persist": "^4.3.1",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "babel-jest": "19.0.0",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-preset-react-native": "1.9.1",
-    "eslint": "^3.17.1",
-    "eslint-config-standard": "^7.0.0",
-    "eslint-plugin-flowtype-errors": "^3.0.0",
-    "eslint-plugin-promise": "^3.4.2",
-    "eslint-plugin-react": "^6.10.0",
-    "eslint-plugin-react-native": "^2.3.1",
-    "eslint-plugin-standard": "^2.0.1",
-    "flow-bin": "^0.41.0",
+    "concurrently": "^3.4.0",
     "jest": "^19.0.0",
-    "react-test-renderer": "~15.4.0-rc.4"
+    "react-test-renderer": "~15.5.2",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.1.0",
+    "typescript": "^2.3.1"
   },
   "jest": {
     "preset": "react-native"

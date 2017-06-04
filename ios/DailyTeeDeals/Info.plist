@@ -42,6 +42,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>fontello.ttf</string>
+		<string>FiraSans-Regular.ttf</string>
+		<string>FiraSans-SemiBold.ttf</string>
+		<string>FiraSans-Italic.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
