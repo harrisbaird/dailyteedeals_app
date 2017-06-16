@@ -1,5 +1,5 @@
-import {ARTIST_INVALIDATE} from '../actions'
-import {ARTIST} from '../actions'
+import { ARTIST_INVALIDATE } from '../actions'
+import { ARTIST } from '../actions'
 
 const initialState = {
   designs: [],

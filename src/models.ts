@@ -2,13 +2,13 @@ export interface Artist {
   id: number
   slug: string
   name: string
+  designs: Array<Design>
 }
 
 export interface Category {
   id: number
   slug: string
   name: string
-  designsCount: number
   images: Images
 }
 
@@ -16,6 +16,7 @@ export interface Site {
   id: number
   slug: string
   name: string
+  designs: Array<Design>
 }
 
 export interface Price {
@@ -27,11 +28,11 @@ export interface Price {
 export interface Images {
   loader: string
   small: string
-  small_vignette: string
   large: string
-  large_vignette: string
   backgroundColor: string
-  primaryColor: string
+  backgroundTextColor: string
+  darkBackgroundColor: string
+  darkBackgroundTextColor: string
 }
 
 export interface Product {
@@ -42,7 +43,7 @@ export interface Product {
   deal: boolean
   lastChance: boolean
   site: Site
-  prices: {[key: string]: Price}
+  prices: { [key: string]: Price }
   images: Images
 }
 

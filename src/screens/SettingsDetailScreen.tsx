@@ -1,35 +1,17 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
-import {connect} from 'react-redux'
+import { StyleSheet, View } from 'react-native'
+import { connect } from 'react-redux'
 import { Navigation } from 'react-navigation'
 import SettingsList from 'react-native-settings-list'
-import {fetchSites} from '../actions'
+import { fetchSites } from '../actions'
 import Icon from '../components/Icon'
 import * as Theme from '../config/theme'
-
-const styles: any = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  iconContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    paddingRight: 15
-  },
-  icon: {
-    fontSize: 20,
-    color: Theme.PRIMARY,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
 
 interface Props {
   navigation: Navigation,
   switchStateProp: string
 }
-interface State {}
+interface State { }
 
 class SettingsDetailScreen extends React.PureComponent<Props, State> {
   render() {
@@ -46,12 +28,13 @@ class SettingsDetailScreen extends React.PureComponent<Props, State> {
 
     return (
       <View style={styles.container}>
-        <SettingsList borderColor={Theme.WHITE}>
+        <SettingsList borderColor={Theme.SPACER} backgroundColor={Theme.PRIMARY}>
           {values.map(obj => {
             let value = valueFn(obj)
             return (
               <SettingsList.Item
                 title={titleFn(obj)}
+                titleStyle={styles.itemTitle}
                 key={value}
                 onPress={() => updateFn(value)}
                 hasSwitch={hasSwitch}
@@ -72,11 +55,35 @@ class SettingsDetailScreen extends React.PureComponent<Props, State> {
   }
 
   _getSwitchState(value) {
-    let {switchStateProp} = this.props
+    let { switchStateProp } = this.props
     let stateProp = this.props[switchStateProp]
     return switchStateProp && stateProp.includes(value)
   }
 }
+
+const styles: any = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  itemTitle: {
+    color: '#fff'
+  },
+  itemTitleInfo: {
+    color: Theme.SPACER
+  },
+  iconContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 15
+  },
+  icon: {
+    fontSize: 20,
+    color: Theme.PRIMARY,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
 
 const mapStateToProps = state => ({
   currency: state.settings.currency,

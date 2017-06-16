@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StatusBar, View, StyleSheet, Text, Share, TouchableOpacity} from 'react-native'
+import { ScrollView, StatusBar, View, StyleSheet, Text, Share, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { Navigation } from 'react-navigation'
 import Header from '../components/Header'
@@ -16,61 +16,62 @@ interface Props {
   designs: Array<Object>,
   id: number
 }
-interface State {}
+interface State { }
 
 class DesignScreen extends React.PureComponent<Props, State> {
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
     let design = navigation.state.params.design
     let product = design.products[0]
     return {
       title: design.name,
-      headerStyle: {backgroundColor: product.images.primaryColor},
-      headerTintColor: Theme.HEADER_TINT,
-      tabBarIcon: ({tintColor}) => (
+      headerStyle: {
+        backgroundColor: product.images.darkBackgroundColor,
+      },
+      headerTintColor: product.images.darkBackgroundTextColor,
+      tabBarIcon: ({ tintColor }) => (
         <Icon name="heart" color={tintColor} size={20} />
       )
     }
   }
 
   render() {
-    let {design} = this.props.navigation.state.params
+    let { design } = this.props.navigation.state.params
     let mainProduct = design.products[0]
-    let {backgroundColor, primaryColor} = mainProduct.images
+    let { backgroundColor, darkBackgroundColor } = mainProduct.images
     let remainingProducts = design.products.slice(1)
 
     return (
       <ScrollView>
         <StatusBar
-          backgroundColor={primaryColor}
+          backgroundColor={darkBackgroundColor}
           animated={true}
         />
 
-        <View style={{backgroundColor: backgroundColor}}>
+        <View style={{ backgroundColor: backgroundColor }}>
           <ProductImage
             url={mainProduct.images.large}
             style={styles.squareImage}
+            background={backgroundColor}
           />
         </View>
 
         <ProductRowGroup
           products={[mainProduct]}
-          title="Lowest Price"
-          color={primaryColor}
-          titleStyle={styles.title}
+          color={darkBackgroundColor}
         />
 
         <ProductRowGroup
           products={remainingProducts}
           title="Also available on"
-          color={primaryColor}
+          color={darkBackgroundColor}
           titleStyle={styles.title}
         />
 
         {design.categories.length > 0 &&
-          <MoreFromCategory 
+          <MoreFromCategory
             category={design.categories[0]}
             title={"More from" + design.categories[0].name}
-          /> 
+          />
         }
 
         {design.categories.map((category) => (
@@ -102,7 +103,7 @@ class DesignScreen extends React.PureComponent<Props, State> {
   }
 
   _share = () => {
-    let {design} = this.props.navigation.state.params
+    let { design } = this.props.navigation.state.params
     Share.share(
       {
         message: `Get ${design.name} by ${design.artist.name} ${design.url}`,

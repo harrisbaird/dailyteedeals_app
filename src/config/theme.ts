@@ -1,5 +1,4 @@
 import { Dimensions } from 'react-native'
-import Device from 'react-native-device-info'
 
 // Common colours
 export const BLACK = '#000'
@@ -10,9 +9,10 @@ export const BLACK_40 = '#00000064'
 export const BLACK_50 = '#00000080'
 export const WHITE_10 = '#ffffff16'
 
-export const PRIMARY = '#111'
-export const SECONDARY = '#333'
-export const ACCENT = '#8C3130'
+export const PRIMARY = '#272E3A'
+export const SECONDARY = '#1E222B'
+export const ACCENT = '#4574CF'
+export const SPACER = '#343d4f'
 
 export const TEXT = WHITE
 export const TEXT_SHADOW = BLACK_40
@@ -30,7 +30,6 @@ export const FONT_DEFAULT = 'FiraSans-Regular'
 export const FONT_DEFAULT_BOLD = 'FiraSans-SemiBold'
 
 // Grid
-export const GRID_ITEMS_PER_ROW = Device.isTablet() ? 4 : 2
 export const GRID_MARGIN = 4
 export const GRID_ITEM_TEXT_PADDING = 10
 export const GRID_ITEM_TITLE_LINE_HEIGHT = 20

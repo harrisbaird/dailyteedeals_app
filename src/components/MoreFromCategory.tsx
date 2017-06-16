@@ -1,19 +1,19 @@
 import React from 'react'
-import {View} from 'react-native'
-import {connect} from 'react-redux'
-import {Navigation} from 'react-navigation'
+import { View } from 'react-native'
+import { connect } from 'react-redux'
+import { Navigation } from 'react-navigation'
 import Grid from '../components/Grid'
 import GridItem from '../components/GridItem'
-import {fetchArtist, invalidateArtist} from '../actions'
+import { fetchArtist, invalidateArtist } from '../actions'
 import * as Theme from '../config/theme'
-import {Category} from '../models'
+import { Category } from '../models'
 
 interface Props {
   navigation: Navigation,
   category: Array<Category>,
   fetchArtist: Function
 }
-interface State {}
+interface State { }
 
 class MoreFromArtist extends React.PureComponent<Props, State> {
   componentDidMount() {
@@ -25,18 +25,19 @@ class MoreFromArtist extends React.PureComponent<Props, State> {
   // }
 
   render() {
-    let {designs} = this.props
+    return null
+    let { designs } = this.props
 
     let filtered = designs.slice(0, Theme.GRID_ITEMS_PER_ROW)
 
     return (
-      <View style={{backgroundColor: Theme.BLACK_50}}>
+      <View style={{ backgroundColor: Theme.BLACK_50 }}>
         <Grid data={filtered} renderItem={this._renderItem} />
       </View>
     )
   }
 
-  _renderItem = ({item}) => {
+  _renderItem = ({ item }) => {
     let deal = item.products[0]
 
     return (

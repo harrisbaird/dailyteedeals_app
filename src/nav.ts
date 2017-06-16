@@ -1,5 +1,5 @@
-import {Platform} from 'react-native'
-import {StackNavigator, TabNavigator} from 'react-navigation'
+import { Platform } from 'react-native'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 import DealsScreen from './screens/DealsScreen'
 import CategoriesScreen from './screens/CategoriesScreen'
 import CategoryDesignsScreen from './screens/CategoryDesignsScreen'
@@ -10,12 +10,12 @@ import SettingsDetailScreen from './screens/SettingsDetailScreen'
 import * as Theme from './config/theme'
 
 const navigationOptions = {
-  headerStyle: {backgroundColor: Theme.HEADER_BG, elevation: 0},
+  headerStyle: { backgroundColor: Theme.HEADER_BG, elevation: 0 },
   headerTintColor: Theme.HEADER_TINT
 }
 
 const defaultStyle = {
-  cardStyle: {backgroundColor: Theme.SCREEN_BG},
+  cardStyle: { backgroundColor: Theme.SCREEN_BG },
   navigationOptions: navigationOptions
 }
 
@@ -35,10 +35,10 @@ const tabBarOptions = {
 
 const homeTabs = TabNavigator(
   {
-    Deals: {screen: DealsScreen},
-    Categories: {screen: CategoriesScreen},
-    Favorites: {screen: FavoritesScreen},
-    Settings: {screen: SettingsScreen}
+    Deals: { screen: DealsScreen },
+    Categories: { screen: CategoriesScreen },
+    Favorites: { screen: FavoritesScreen },
+    Settings: { screen: SettingsScreen },
   },
   {
     ...defaultStyle,
@@ -50,14 +50,14 @@ const homeTabs = TabNavigator(
 
 const main = StackNavigator(
   {
-    HomeTabs: {screen: homeTabs},
-    Design: {screen: DesignScreen},
-    SettingsDetail: {screen: SettingsDetailScreen},
-    CategoryDesigns: {screen: CategoryDesignsScreen}
+    HomeTabs: { screen: homeTabs },
+    Design: { screen: DesignScreen },
+    SettingsDetail: { screen: SettingsDetailScreen },
+    CategoryDesigns: { screen: CategoryDesignsScreen }
   },
   {
     ...defaultStyle,
-    cardStyle: {backgroundColor: Theme.SCREEN_BG}
+    cardStyle: { backgroundColor: Theme.SCREEN_BG }
   }
 )
 

@@ -2,21 +2,18 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import ProductImage from './ProductImage'
 import PriceComponent from './Price'
-import Icon from './Icon'
 import * as Theme from '../config/theme'
-import {Price} from '../models'
+import { Images, Price } from '../models'
 
 interface Props {
   title: string,
   subtitle: string,
-  imageURL: string,
   onPress: Function,
+  images: Images,
   itemWidth?: number,
   itemMargin?: number,
   icons?: Array<string>,
-  prices?:{[key: string]: Price},
-  backgroundColor?: string,
-  textBackgroundColor?: string
+  prices?: { [key: string]: Price },
 }
 
 interface DefaultProps {
@@ -25,7 +22,7 @@ interface DefaultProps {
   textBackgroundColor: string
 }
 
-interface State {}
+interface State { }
 
 export default class GridItem extends React.PureComponent<Props, State> {
   static defaultProps: DefaultProps = {
@@ -38,54 +35,31 @@ export default class GridItem extends React.PureComponent<Props, State> {
     let {
       title,
       subtitle,
-      imageURL,
-      backgroundColor,
-      textBackgroundColor,
-      icons,
       prices,
+      images,
       itemWidth,
       itemMargin
     } = this.props
 
+    let textStyle = StyleSheet.flatten([styles.text, { color: images.darkBackgroundTextColor }])
+
     return (
       <TouchableOpacity onPress={() => this.props.onPress()}>
-        <View
-          style= {[
-            styles.container,
-            {
-              width: itemWidth,
-              marginRight: itemMargin,
-              backgroundColor: backgroundColor
-            }
-          ]}
-        >
+        <View style={[styles.container, { width: itemWidth, marginRight: itemMargin }]}>
           <ProductImage
-            url={imageURL}
-            style={{width: itemWidth, height: itemWidth}}
-          >
-            <View style={styles.imageOverlay}>
-              <View style={styles.icons}>
-                {icons.map(name => (
-                  <Icon
-                    key={name}
-                    name={name}
-                    size={26}
-                    color={Theme.WHITE}
-                  />
-                ))}
-              </View>
+            url={images.small}
+            style={{ width: itemWidth, height: itemWidth }}
+            background={images.backgroundColor}
+          />
 
-              {prices !== undefined &&
-                <PriceComponent prices={prices} style={[styles.text, styles.price]} />}
-            </View>
-          </ProductImage>
-
-          <View style={[styles.textContainer, {backgroundColor: textBackgroundColor}]}>
-            <Text numberOfLines={1} style={[styles.text, styles.title]}>
+          <View style={[styles.textContainer, { backgroundColor: images.darkBackgroundColor }]}>
+            <Text numberOfLines={1} style={[textStyle, styles.title]}>
               {title}
             </Text>
             <View style={styles.bottom}>
-              <Text numberOfLines={1} style={[styles.text, styles.subtitle]}>
+              {prices !== undefined &&
+                <PriceComponent prices={prices} style={[textStyle, styles.price, styles.subtitle]} />}
+              <Text numberOfLines={1} style={[textStyle, styles.subtitle]}>
                 {subtitle}
               </Text>
             </View>
@@ -101,14 +75,6 @@ const styles: any = StyleSheet.create({
     flex: 1,
     alignItems: 'center'
   },
-  imageOverlay: {
-    backgroundColor: Theme.TRANSPARENT,
-    padding: 10,
-    flexDirection: 'row'
-  },
-  icons: {
-    flex: 1
-  },
   textContainer: {
     flex: 1,
     padding: 10,
@@ -121,14 +87,13 @@ const styles: any = StyleSheet.create({
   },
   text: {
     fontFamily: Theme.FONT_DEFAULT,
-    color: Theme.TEXT,
     textShadowColor: Theme.TEXT_SHADOW,
-    textShadowOffset: {width: 1, height: 1},
+    textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1
   },
   price: {
-    fontSize: 16,
-    fontFamily: Theme.FONT_DEFAULT_BOLD
+    marginRight: 5,
+    fontWeight: 'bold'
   },
   title: {
     fontSize: 16,

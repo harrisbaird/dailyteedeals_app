@@ -1,4 +1,10 @@
-const CURRENCIES = {
+interface Currency {
+  name: string,
+  symbol: string,
+  icon: string
+}
+
+const CURRENCIES: { [key: string]: Currency; } = {
   USD: {
     name: 'United States Dollar',
     symbol: '$',

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, StyleSheet, View } from 'react-native'
+import { Platform, StyleSheet, View, Text } from 'react-native'
 import { Navigation } from 'react-navigation'
 import { connect } from 'react-redux'
 import SettingsList from 'react-native-settings-list'
@@ -9,27 +9,6 @@ import ORDER_TYPES from '../config/order_types'
 import * as Theme from '../config/theme'
 import { fetchSites } from '../actions'
 import * as actions from '../actions'
-
-const styles: any = StyleSheet.create({
-  container:  {
-    flex:  1
-  },
-  iconContainer: {
-    marginLeft:  15,
-    height: 30,
-    width: 30,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-    backgroundColor: Theme.ACCENT
-  },
-  icon: {
-    fontSize:  20,
-    backgroundColor: Theme.TRANSPARENT,
-    color: Theme.WHITE
-  }
-})
 
 interface Props {
   navigation: Navigation,
@@ -42,12 +21,12 @@ interface Props {
   setDefaultOrder: Function,
   toggleSiteHidden: Function
 }
-interface State {}
+interface State { }
 
 class SettingsScreen extends React.PureComponent<Props, State> {
   static navigationOptions = {
     title: 'Settings',
-    tabBarIcon: ({tintColor}) => (
+    tabBarIcon: ({ tintColor }) => (
       <Icon name="settings" color={tintColor} size={24} />
     )
   }
@@ -69,7 +48,7 @@ class SettingsScreen extends React.PureComponent<Props, State> {
 
     return (
       <View>
-        <SettingsList borderColor={Theme.WHITE} style={styles.container}>
+        <SettingsList borderColor={Theme.SPACER} backgroundColor={Theme.PRIMARY}>
           {this.generateSettingsItem(
             'Currency',
             CURRENCIES[currency].name,
@@ -78,8 +57,8 @@ class SettingsScreen extends React.PureComponent<Props, State> {
               type: 'currency',
               values: Object.keys(CURRENCIES),
               updateFn: setCurrency,
-              valueFn: (obj: any) : any => obj,
-              titleFn: (obj: any) : string => CURRENCIES[obj].name
+              valueFn: (obj: any): any => obj,
+              titleFn: (obj: any): string => CURRENCIES[obj].name
             }
           )}
 
@@ -91,9 +70,9 @@ class SettingsScreen extends React.PureComponent<Props, State> {
               values: sites,
               hasSwitch: true,
               switchStateProp: 'hiddenSites',
-              titleFn: (obj: any) : string => obj.name,
-              valueFn: (obj: any) : number => obj.id,
-              updateFn: (id: number) : undefined => toggleSiteHidden(id)
+              titleFn: (obj: any): string => obj.name,
+              valueFn: (obj: any): number => obj.id,
+              updateFn: (id: number): undefined => toggleSiteHidden(id)
             }
           )}
 
@@ -118,7 +97,9 @@ class SettingsScreen extends React.PureComponent<Props, State> {
     return (
       <SettingsList.Item
         title={title}
+        titleStyle={styles.itemTitle}
         titleInfo={String(subtitle)}
+        titleInfoStyle={styles.titleInfo}
         icon={this._makeIcon(icon)}
         hasNavArrow={Platform.OS === 'ios'}
         onPress={() =>
@@ -135,6 +116,33 @@ class SettingsScreen extends React.PureComponent<Props, State> {
     )
   }
 }
+
+const styles: StyleSheet.Style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  itemTitle: {
+    color: '#fff'
+  },
+  itemTitleInfo: {
+    color: Theme.SPACER
+  },
+  iconContainer: {
+    marginLeft: 15,
+    height: 30,
+    width: 30,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+    backgroundColor: Theme.ACCENT
+  },
+  icon: {
+    fontSize: 20,
+    backgroundColor: Theme.TRANSPARENT,
+    color: Theme.WHITE
+  }
+})
 
 const mapStateToProps = state => ({
   sites: state.sites.sites,

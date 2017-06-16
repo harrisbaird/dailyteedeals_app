@@ -1,11 +1,11 @@
 import React from 'react'
-import {View, Text, StyleSheet, Linking, TouchableOpacity} from 'react-native'
-import {connect} from 'react-redux'
+import { View, Text, StyleSheet, Linking, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 import RoundedButton from './RoundedButton'
 import Icon from './Icon'
-import {formatMoney} from '../utils/money'
+import { formatMoney } from '../utils/money'
 import * as Theme from '../config/theme'
-import {Product} from '../models'
+import { Product } from '../models'
 
 interface Props {
   product: Product,
@@ -13,35 +13,21 @@ interface Props {
   currency: string,
   style?: StyleSheet.Style
 }
-interface State {}
+interface State { }
 
 class ProductRow extends React.PureComponent<Props, State> {
   render() {
-    let {product, currency, color, style} = this.props
-
-    let notice = undefined
-    if (product.deal) {
-      notice = this._renderNotice(
-        'clock',
-        `This daily tee is available on ${product.site.name} for a limited time.`
-      )
-    } else if (product.lastChance) {
-      notice = this._renderNotice(
-        'retry',
-        'Second chance to get this design for a limited time.'
-      )
-    }
+    let { product, currency, color, style } = this.props
 
     return (
       <TouchableOpacity onPress={() => Linking.openURL(product.buyURL)}>
-        <View style={[{backgroundColor: color}, style]}>
+        <View style={[{ backgroundColor: color }, style]}>
           <View style={styles.header}>
-            <Text style={styles.siteName} numberOfLines = {1}>
+            <Text style={styles.siteName} numberOfLines={1}>
               {product.site.name}
             </Text>
             <RoundedButton title={'Buy for ' + formatMoney(product.prices, currency)} />
           </View>
-          {notice}
         </View>
       </TouchableOpacity>
     )
@@ -49,9 +35,9 @@ class ProductRow extends React.PureComponent<Props, State> {
 
   _renderNotice(icon, text) {
     return (
-      <View style = {styles.notice}>
-        <Text style= {styles.noticeText}>
-          <Icon name= {icon} style = {styles.icon} />
+      <View style={styles.notice}>
+        <Text style={styles.noticeText}>
+          <Icon name={icon} style={styles.icon} />
           {'  '}
           {text}
         </Text>
@@ -61,7 +47,7 @@ class ProductRow extends React.PureComponent<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  header:    {
+  header: {
     flexDirection: 'row',
     paddingTop: 5,
     paddingBottom: 5,

@@ -1,10 +1,10 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {Navigation} from 'react-navigation'
+import { connect } from 'react-redux'
+import { Navigation } from 'react-navigation'
 import Grid from '../components/Grid'
 import GridItem from '../components/GridItem'
 import Icon from '../components/Icon'
-// import ORDER_TYPES from '../config/order_types'
+import Spinner from '../components/Spinner'
 import { fetchDeals } from '../actions'
 
 interface Props {
@@ -25,7 +25,7 @@ class DealsScreen extends React.PureComponent<Props, State> {
     headerTitle: 'Daily Tee Deals',
     tabBarLabel: 'Deals',
     headerBackTitle: undefined,
-    tabBarIcon: ({tintColor}) => (
+    tabBarIcon: ({ tintColor }) => (
       <Icon name="home" color={tintColor} size={20} />
     )
   }
@@ -48,7 +48,7 @@ class DealsScreen extends React.PureComponent<Props, State> {
   // }
 
   render() {
-    // if (this.props.refreshing) return <Spinner />
+    if (this.props.refreshing) return <Spinner />
 
     console.log(this.props.designs.length)
 
@@ -57,7 +57,7 @@ class DealsScreen extends React.PureComponent<Props, State> {
     )
   }
 
-  _renderItem = ({item}) => {
+  _renderItem = ({ item }) => {
     let deal = item.products[0]
 
     return (
@@ -65,10 +65,8 @@ class DealsScreen extends React.PureComponent<Props, State> {
         key={item.id}
         title={item.name}
         subtitle={deal.site.name}
+        images={deal.images}
         icons={deal.lastChance ? ['clock'] : []}
-        backgroundColor={deal.images.backgroundColor}
-        textBackgroundColor={deal.images.primaryColor}
-        imageURL={deal.images.small_vignette}
         prices={deal.prices}
         onPress={() =>
           this.props.navigation.navigate('Design', {

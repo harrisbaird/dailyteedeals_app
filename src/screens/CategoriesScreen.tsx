@@ -1,12 +1,12 @@
 import React from 'react'
-import {InteractionManager} from 'react-native'
-import {connect} from 'react-redux'
-import {Navigation} from 'react-navigation'
+import { InteractionManager } from 'react-native'
+import { connect } from 'react-redux'
+import { Navigation } from 'react-navigation'
 import Grid from '../components/Grid'
 import GridItem from '../components/GridItem'
 import Icon from '../components/Icon'
 import Spinner from '../components/Spinner'
-import {fetchCategories} from '../actions'
+import { fetchCategories } from '../actions'
 
 interface Props {
   navigation: Navigation,
@@ -14,30 +14,30 @@ interface Props {
   categories: Array<any>,
   refreshing: boolean
 }
-interface State {}
+interface State { }
 
 class CategoriesScreen extends React.Component<Props, State> {
   static navigationOptions = {
     title: 'Categories',
-    tabBarIcon: ({tintColor}) => (
+    tabBarIcon: ({ tintColor }) => (
       <Icon name="grid" color={tintColor} size={20} />
     )
   }
 
   componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
-      console.log(this.props);
-      this.props.fetchCategories()
+      // this.props.fetchCategories()
     })
   }
 
   render() {
-    if (this.props.refreshing) return <Spinner />
+    // if (this.props.refreshing) return <Spinner />
+    return <Spinner />
 
     return <Grid data={this.props.categories} renderItem={this._renderItem} />
   }
 
-  _renderItem = ({item}) => {
+  _renderItem = ({ item }) => {
     return (
       <GridItem
         title={item.name}

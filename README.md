@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/harrisbaird/dailyteedeals_app/master/assets/github.png)
+![Logo](https://rawcdn.githack.com/harrisbaird/dailyteedeals_app/master/assets/github.png)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5630ed5eb4e4328b6a1c547546ed616)](https://www.codacy.com/app/harrisbaird/dailyteedeals_app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=harrisbaird/dailyteedeals_app&amp;utm_campaign=Badge_Grade)  
 iOS:  
@@ -9,13 +9,7 @@ Android:
 ## About this app
 Daily Tee Deals is a React Native app for discovering daily tees.
 
-## Running a debug build
-
-```bash
-yarn install
-react-native run-ios
-react-native run-android
-```
-
 ## Please note
-The backend api endpoint is currently private and undocumented. You can however use `TEST_KEY` to build and test the app.
+Due to time constraints, this will probably not be finished.
+
+[![Screenshot](https://rawcdn.githack.com/harrisbaird/dailyteedeals_app/master/assets/screenshot_thumb.png)](https://rawcdn.githack.com/harrisbaird/dailyteedeals_app/master/assets/screenshot.png)

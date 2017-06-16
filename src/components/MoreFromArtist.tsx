@@ -1,12 +1,12 @@
 import React from 'react'
-import {View} from 'react-native'
-import {connect} from 'react-redux'
-import {Navigation} from 'react-navigation'
+import { View } from 'react-native'
+import { connect } from 'react-redux'
+import { Navigation } from 'react-navigation'
 import Grid from '../components/Grid'
 import GridItem from '../components/GridItem'
-import {fetchArtist, invalidateArtist} from '../actions'
+import { fetchArtist, invalidateArtist } from '../actions'
 import * as Theme from '../config/theme'
-import{Artist, Design} from '../models'
+import { Artist, Design } from '../models'
 
 interface Props {
   navigation: Navigation,
@@ -15,7 +15,7 @@ interface Props {
   fetchArtist: Function,
   invalidateArtist: Function
 }
-interface State {}
+interface State { }
 
 class MoreFromArtist extends React.PureComponent<Props, State> {
   componentDidMount() {
@@ -27,18 +27,20 @@ class MoreFromArtist extends React.PureComponent<Props, State> {
   // }
 
   render() {
-    let {designs} = this.props
+    let { designs } = this.props
 
     let filtered = designs.slice(0, Theme.GRID_ITEMS_PER_ROW)
 
+    if (filtered == undefined) return null
+
     return (
-      <View style={{backgroundColor: Theme.BLACK_50}}>
+      <View style={{ backgroundColor: Theme.BLACK_50 }}>
         <Grid data={filtered} renderItem={this._renderItem} />
       </View>
     )
   }
 
-  _renderItem = ({item}) => {
+  _renderItem = ({ item }) => {
     let deal = item.products[0]
 
     return (
@@ -47,9 +49,7 @@ class MoreFromArtist extends React.PureComponent<Props, State> {
         title={item.name}
         subtitle={deal.site.name}
         icons={deal.lastChance ? ['clock'] : []}
-        backgroundColor={deal.images.backgroundColor}
-        textBackgroundColor={deal.images.primaryColor}
-        imageURL={deal.images.small}
+        images={deal.images}
         prices={deal.prices}
         onPress={() =>
           this.props.navigation.navigate('Design', {
