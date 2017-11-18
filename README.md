@@ -9,6 +9,8 @@ Android:
 ## About this app
 Daily Tee Deals is a React Native app for discovering daily tees.
 
+The older native Android version available in the [android](https://github.com/harrisbaird/dailyteedeals_app/tree/android) branch.
+
 ## Please note
 Due to time constraints, this will probably not be finished.
 
